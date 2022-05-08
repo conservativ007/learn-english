@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, InputGroup, FormControl } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
+import { saveToLocaleStorage } from '../hooks/saveToLocalStorage';
 import { addWordsAction } from '../store/wordsReducer';
 
 const styles = {
@@ -15,15 +16,14 @@ const Createset = () => {
   let someWords = useSelector(state => state.wordsReducer);
   let dispatch = useDispatch();
 
-  console.log(someWords)
 
   const [nameSet, setNameSet] = useState("");
   const [isSet, setIsSet] = useState(false);
 
-
   const [world, setWorld] = useState("");
   const [worldTranslate, setWorldTranslate] = useState("");
   const [phrase, setWorldPhrase] = useState("");
+
 
   function setNameToSet() {
     if(nameSet.length === 0) return;
@@ -33,11 +33,16 @@ const Createset = () => {
   function addWorld() { 
     let testObj = {
       id: Date.now(),
+      category: nameSet,
       world: world,
       worldTranslate: worldTranslate,
       phrase: phrase,
     }
     dispatch(addWordsAction(testObj))
+  }
+
+  function saveSetWorlds() {
+    saveToLocaleStorage(nameSet, someWords)
   }
 
   if(isSet === false) {
@@ -54,8 +59,6 @@ const Createset = () => {
       </div>
     )
   }
-
-  
 
   return ( 
     <div style={styles.formContainer} >
@@ -82,8 +85,8 @@ const Createset = () => {
       />
       </InputGroup>
       <Button onClick={() => addWorld()} >добавить слово</Button>
+      <Button onClick={() => saveSetWorlds()} >save</Button>
     </div>
-    
   );
 }
 
