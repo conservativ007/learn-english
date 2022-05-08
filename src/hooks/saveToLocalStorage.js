@@ -1,6 +1,4 @@
 export function saveToLocaleStorage(setName, array) {
-  console.log(setName, array)
-
   const LEARN_ENGLISH = "LEARN_ENGLISH";
 
   if(localStorage.getItem(LEARN_ENGLISH) === null) {

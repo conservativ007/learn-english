@@ -1,0 +1,14 @@
+.set-container{
+  display: flex;
+}
+
+.set {
+  width: 150px;
+  height: 150px;
+  margin-right: 10px;
+  border-radius: 10px;
+
+  padding: 5px;
+  color: white;
+  font-size: 20px;
+}
