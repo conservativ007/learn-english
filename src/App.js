@@ -1,14 +1,14 @@
 import './App.css';
 import { useRoutes } from "react-router-dom";
 import Home from './pages/Home';
-import About from './pages/About';
 import Createset from './pages/CreateSet';
+import ShowCard from './components/ShowCard';
 
 function App() {
 
   let element = useRoutes([
     { path: "/", element: <Home /> },
-    { path: "about", element: <About /> },
+    { path: "show-card/:card_name", element: <ShowCard /> },
     { path: "create-set", element: <Createset /> },
   ]);
 

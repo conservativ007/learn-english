@@ -34,8 +34,8 @@ const Createset = () => {
     let testObj = {
       id: Date.now(),
       category: nameSet,
-      world: world,
-      worldTranslate: worldTranslate,
+      word: world,
+      wordTranslate: worldTranslate,
       phrase: phrase,
     }
     dispatch(addWordsAction(testObj))
