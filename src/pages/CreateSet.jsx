@@ -38,7 +38,6 @@ const Createset = () => {
   } 
 
   function addWorld() { 
-    // console.log(worldTranslate.split(",")) 
     let testObj = {
       id: Date.now(),
       category: nameSet,
@@ -83,7 +82,7 @@ const Createset = () => {
 
       <InputGroup className="mb-3">
       <FormControl
-        placeholder="введите перевод"
+        placeholder="введите перевод: word1, word2,..."
         onChange={(e) => setWorldTranslate(e.target.value)}
         value={worldTranslate}
       />

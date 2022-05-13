@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { Button } from 'react-bootstrap';
 import "./show-card.css";
+import Header from './Header';
 
 const ShowCard = () => {
 
@@ -23,24 +24,30 @@ const ShowCard = () => {
   }
 
   return (
-    <div className="cards-content">
-      <div className="cards-container">
-        <div className="flip-card">
-          <div onClick={isFlippedCardToggle} className="flip-card-inner">
-            <div className="flip-card-front">
-              <div className="card-word">{cards[counter].word}</div>
-            </div>
-            <div className="flip-card-back">
-              <div className="card-word_translate">{cards[counter].wordTranslate.join(",")}</div>
-              <div className="card-word_phrase">{cards[counter].phrase}</div>
+    <>
+      <Header />
+      <div className="cards-content">
+        <div className="cards-container">
+          <div className="flip-card">
+            <div onClick={isFlippedCardToggle} className="flip-card-inner">
+              <div className="flip-card-front">
+                <div className="card-word">{cards[counter].word}</div>
+              </div>
+              <div className="flip-card-back">
+                <div className="card-word_translate">{cards[counter].wordTranslate.join(",")}</div>
+                <div className="card-word_phrase">{cards[counter].phrase}</div>
+              </div>
             </div>
           </div>
         </div>
+        <div className="cards-control">
+          <div className="cards-counter">
+            {counter + 1}
+          </div>
+          <Button className="m-3" onClick={goToTheNextCard}>next</Button>
+        </div>
       </div>
-      <div className="cards-control">
-        <Button className="m-3" onClick={goToTheNextCard}>next</Button>
-      </div>
-      </div>
+    </>
   );
 }
 
