@@ -3,11 +3,18 @@ import { Button, InputGroup, FormControl } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { saveToLocaleStorage } from '../hooks/saveToLocalStorage';
 import { addWordsAction } from '../store/wordsReducer';
+import { Link } from 'react-router-dom';
+
+import "./createSet.css";
 
 const styles = {
   formContainer: {
     margin: "20px auto",
     width: "600px"
+  },
+  link: {
+    color: "white",
+    textDecoration: "none",
   }
 }
 
@@ -31,14 +38,18 @@ const Createset = () => {
   } 
 
   function addWorld() { 
+    // console.log(worldTranslate.split(",")) 
     let testObj = {
       id: Date.now(),
       category: nameSet,
       word: world,
-      wordTranslate: worldTranslate,
+      wordTranslate: worldTranslate.split(","),
       phrase: phrase,
     }
-    dispatch(addWordsAction(testObj))
+    dispatch(addWordsAction(testObj));
+    setWorld("");
+    setWorldTranslate("");
+    setWorldPhrase("");
   }
 
   function saveSetWorlds() {
@@ -64,7 +75,7 @@ const Createset = () => {
     <div style={styles.formContainer} >
       <InputGroup className="mb-3">
       <FormControl
-        placeholder="введите слово или несколько слов через запятую"
+        placeholder="введите слово"
         onChange={(e) => setWorld(e.target.value)}
         value={world}
       />
@@ -84,8 +95,17 @@ const Createset = () => {
         value={phrase}
       />
       </InputGroup>
-      <Button onClick={() => addWorld()} >добавить слово</Button>
-      <Button onClick={() => saveSetWorlds()} >save</Button>
+      <div className="button-controls">
+        <Button onClick={() => addWorld()} >добавить слово</Button>
+          <Link 
+            onClick={() => saveSetWorlds()}
+            style={styles.link} 
+            className="save" 
+            to="/">
+              save
+          </Link>
+      </div>
+      
     </div>
   );
 }

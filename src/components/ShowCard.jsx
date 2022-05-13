@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import { Button } from 'react-bootstrap';
 import "./show-card.css";
 
 const ShowCard = () => {
@@ -30,14 +31,14 @@ const ShowCard = () => {
               <div className="card-word">{cards[counter].word}</div>
             </div>
             <div className="flip-card-back">
-              <div className="card-word_translate">{cards[counter].wordTranslate}</div>
+              <div className="card-word_translate">{cards[counter].wordTranslate.join(",")}</div>
               <div className="card-word_phrase">{cards[counter].phrase}</div>
             </div>
           </div>
         </div>
       </div>
       <div className="cards-control">
-        <div onClick={goToTheNextCard} className="arrow">next</div>
+        <Button className="m-3" onClick={goToTheNextCard}>next</Button>
       </div>
       </div>
   );

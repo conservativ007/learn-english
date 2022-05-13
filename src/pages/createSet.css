@@ -1,0 +1,15 @@
+.button-controls {
+  display: flex;
+}
+
+.save {
+  margin-left: 10px;
+  color: white;
+  background-color: #0d6efd;
+  padding: 7px 10px;
+  border-radius: 5px;
+  height: 38px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+}
