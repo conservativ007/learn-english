@@ -1,14 +1,14 @@
 import React from 'react';
-import Showsets from '../components/showSets';
-import Header from "../components/Header";
+import Showsets from './showSets';
+import Header from "./Header";
 
 
 const Home = () => {
   return (
-    <div>
+    <>
       <Header />
       <Showsets />
-    </div>
+    </>
     
   );
 }

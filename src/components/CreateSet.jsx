@@ -5,7 +5,7 @@ import { saveToLocaleStorage } from '../hooks/saveToLocalStorage';
 import { addWordsAction } from '../store/wordsReducer';
 import { Link } from 'react-router-dom';
 
-import "./createSet.css";
+import "../styles/createSet.css";
 
 const styles = {
   formContainer: {

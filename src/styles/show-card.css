@@ -1,8 +1,3 @@
-.cards-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
 .cards-container {
   display: flex;
@@ -69,3 +64,16 @@
   font-size: 20px;
 }
 
+.cards-control {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.button-prev {
+  margin-right: 10px;
+}
+
+.button-next {
+  margin-left: 10px;
+}

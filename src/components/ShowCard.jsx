@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router';
 import { Button } from 'react-bootstrap';
-import "./show-card.css";
+import "../styles/show-card.css";
 import Header from './Header';
+import Games from './games/Games';
 
 const ShowCard = () => {
 
@@ -20,6 +21,13 @@ const ShowCard = () => {
     setCouter(counter + 1);
     if(counter === cards.length - 1) {
       setCouter(0);
+    }
+  }
+ 
+  function goToThePrevCard() {
+    setCouter(counter - 1);
+    if(counter === 0) {
+      setCouter(cards.length - 1);
     }
   }
 
@@ -40,13 +48,15 @@ const ShowCard = () => {
             </div>
           </div>
         </div>
-        <div className="cards-control">
-          <div className="cards-counter">
-            {counter + 1}
-          </div>
-          <Button className="m-3" onClick={goToTheNextCard}>next</Button>
-        </div>
       </div>
+      <div className="cards-control">
+        <Button className="button-prev" onClick={goToThePrevCard}>prev</Button>
+        <div className="cards-counter">{counter + 1}</div>
+        <div>/</div>
+        <div>{cards.length}</div>
+        <Button className="button-next" onClick={goToTheNextCard}>next</Button>
+      </div>
+      <Games setName={name} />
     </>
   );
 }

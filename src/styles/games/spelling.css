@@ -1,0 +1,44 @@
+.game-container {
+  margin-top: 20px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.word-translate {
+  font-size: 30px;
+}
+
+.user-answer {
+  margin-top: 30px;
+  position: relative;
+  width: 300px;
+}
+
+.marker {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  right: 5px;
+  top: 5px;
+
+  transition: .5s;
+}
+
+.green {
+  background-color: green;
+}
+
+.red {
+  background-color: red;
+}
+
+.check-answer {
+  width: 250px;
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-around;
+}
