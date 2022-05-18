@@ -1,0 +1,24 @@
+.results {
+  font-size: 20px;
+}
+
+.false-answer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-false-answer {
+  text-decoration: line-through;
+}
+
+.button-link {
+  display: block;
+  height: 100%;
+  color: white;
+  text-decoration: none;
+}
+
+.button-link:hover {
+  color: white;
+}
+

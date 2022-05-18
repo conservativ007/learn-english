@@ -4,6 +4,7 @@ import Home from './components/Home';
 import Createset from './components/CreateSet';
 import ShowCard from './components/ShowCard';
 import Spelling from './components/games/Spelling';
+import ShowResults from './components/games/ShowResults';
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
     { path: "show-card/:card_name", element: <ShowCard /> },
     { path: "create-set", element: <Createset /> },
     { path: "spelling/:card_name", element: <Spelling /> },
+    { path: "/show-results", element: <ShowResults /> },
   ]);
 
   return element;

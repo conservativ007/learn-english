@@ -42,3 +42,19 @@
   display: flex;
   justify-content: space-around;
 }
+
+.show-results {
+  margin-top: 20px;
+}
+
+.show-results a {
+  display: block;
+  height: 100%;
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.show-results a:hover {
+  color: white;
+}

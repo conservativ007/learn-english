@@ -8,7 +8,7 @@ import "../styles/showSets.css";
 const Showsets = () => {
   
   const dispatch = useDispatch();
-  let backgrounds = ["#ff7675", "#fab1a0", "#55efc4", "#81ecec"];
+  let backgrounds = ["#ff7675", "#fab1a0", "#55efc4", "#81ecec", "#ff9ff3", "#feca57", "#ff6b6b", "#1dd1a1"];
   let sets = JSON.parse(localStorage.getItem("LEARN_ENGLISH"));
   
   if(sets && sets.length > 0)
@@ -22,7 +22,7 @@ const Showsets = () => {
             return (
               <div 
                 key={index} 
-                style={{backgroundColor: backgrounds[index]}} 
+                style={{backgroundColor: backgrounds[index % backgrounds.length]}} 
                 className="set"
               >
                 <Link 

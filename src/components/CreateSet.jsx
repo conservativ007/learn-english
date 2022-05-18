@@ -41,7 +41,7 @@ const Createset = () => {
     let testObj = {
       id: Date.now(),
       category: nameSet,
-      word: world,
+      word: world.trim(),
       wordTranslate: worldTranslate.split(","),
       phrase: phrase,
     }
