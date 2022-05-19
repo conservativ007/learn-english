@@ -36,6 +36,16 @@
   backface-visibility: hidden;
 }
 
+.flip-card-inner {
+  position: relative;
+}
+
+.sound {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
 .flip-card-front {
   display: flex;
   align-items: center;
@@ -43,6 +53,7 @@
   background-color: mintCream;
   color: darkslategray;
 }
+
 
 .flip-card-back {
   font-size: 23px;

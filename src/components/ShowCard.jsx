@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router';
 import { Button } from 'react-bootstrap';
+import { AiFillSound } from 'react-icons/ai';
 import "../styles/show-card.css";
 import Header from './Header';
 import Games from './games/Games';
+
+import { speech } from '../hooks/speech';
 
 const ShowCard = () => {
 
@@ -14,6 +17,7 @@ const ShowCard = () => {
   const [counter, setCouter] = useState(0);
   
   function isFlippedCardToggle(e) {
+    if(e.target.className === "flip-card-front" || e.target.className === "flip-card-back")
     e.currentTarget.classList.toggle("is-flipped");
   }
 
@@ -40,11 +44,14 @@ const ShowCard = () => {
             <div onClick={isFlippedCardToggle} className="flip-card-inner">
               <div className="flip-card-front">
                 <div className="card-word">{cards[counter].word}</div>
+                <AiFillSound onClick={() => speech(cards[counter].word)} className="sound" />
               </div>
               <div className="flip-card-back">
                 <div className="card-word_translate">{cards[counter].wordTranslate.join(",")}</div>
                 <div className="card-word_phrase">{cards[counter].phrase}</div>
+                <AiFillSound onClick={() => speech(cards[counter].phrase)} className="sound" />
               </div>
+              
             </div>
           </div>
         </div>

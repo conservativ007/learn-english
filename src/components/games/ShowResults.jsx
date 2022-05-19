@@ -7,7 +7,6 @@ import "../../styles/games/showResults.css";
 const ShowResults = () => {
 
   const results = useSelector(store => store.answersReducer);
-  console.log(results)
 
   return (
     <div className="results">
