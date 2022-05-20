@@ -7,6 +7,7 @@ let defaultStore = {
 const CORRECT = "CORRECT";
 const INCORRECT = "INCORRECT";
 const ADD_ANSWER = "ADD_ANSWER";
+const ANSWER_ZEROING = "ANSWER_ZEROING";
 
 
 export function answersReducer(store = defaultStore, action) {
@@ -17,11 +18,18 @@ export function answersReducer(store = defaultStore, action) {
       return {...store, incorrectAnswerCounter: store.incorrectAnswerCounter + 1}
     case ADD_ANSWER:
       return {...store, userAnswer: [...store.userAnswer, action.payload]}
+    case ANSWER_ZEROING:
+      return {
+        correctAnswerCounter: 0,
+        incorrectAnswerCounter: 0,
+        userAnswer: []
+      }
     default: return store;
     }
 }
 
-export const correctAction = () => ({type: CORRECT})
-export const incorrectAction = () => ({type: INCORRECT})
-export const userAnswerAction = (payload) => ({type: ADD_ANSWER, payload})
+export const correctAction = () => ({type: CORRECT});
+export const incorrectAction = () => ({type: INCORRECT});
+export const zeroingAction = () => ({type: ANSWER_ZEROING});
+export const userAnswerAction = (payload) => ({type: ADD_ANSWER, payload});
 

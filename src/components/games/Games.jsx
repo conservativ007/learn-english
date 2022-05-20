@@ -6,8 +6,11 @@ const Games = ({ setName }) => {
 
   return (
     <div className="games">
-      <div className="train">тренировка</div>
-      <Link to={`/spelling/${setName}`}>письмо</Link>
+      <div className="games-title">тренировка</div>
+      <div className="games-train">
+        <Link to={`/spelling/${setName}`}>письмо</Link>
+        <Link to={`/listening/${setName}`}>аудирование</Link>
+      </div>
     </div>
   );
 }

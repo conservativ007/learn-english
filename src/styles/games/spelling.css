@@ -13,8 +13,8 @@
 
 .user-answer {
   margin-top: 30px;
+  width: 100%;
   position: relative;
-  width: 300px;
 }
 
 .marker {
@@ -36,12 +36,7 @@
   background-color: red;
 }
 
-.check-answer {
-  width: 250px;
-  margin-top: 30px;
-  display: flex;
-  justify-content: space-around;
-}
+
 
 .show-results {
   margin-top: 20px;

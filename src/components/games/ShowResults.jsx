@@ -1,12 +1,14 @@
 import { Button } from 'react-bootstrap';
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import "../../styles/games/showResults.css";
+import { zeroingAction } from '../../store/answersReducer';
 
 const ShowResults = () => {
 
   const results = useSelector(store => store.answersReducer);
+  const dispatch = useDispatch();
 
   return (
     <div className="results">
@@ -27,7 +29,7 @@ const ShowResults = () => {
         <div>правильных ответов: {results.correctAnswerCounter}</div>
         <div>неправильных ответов: {results.incorrectAnswerCounter}</div>
       </div>
-      <Button><Link className="button-link" to="/">сьебаться на глауную</Link></Button>
+      <Button onClick={() => dispatch(zeroingAction())}><Link className="button-link" to="/">сьебаться на глауную</Link></Button>
     </div>
     
   )

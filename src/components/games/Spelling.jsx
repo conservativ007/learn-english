@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState} from 'react';
+import React, { useRef, useState} from 'react';
 import { Button, FormControl } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
-import { Link } from 'react-router-dom';
 import { userAnswerAction, correctAction, incorrectAction } from '../../store/answersReducer';
+import ShowResults from './ShowResults';
 
 import "../../styles/games/spelling.css"
 
@@ -53,13 +53,8 @@ const Spelling = () => {
     return () => clearTimeout(timer);
   }
 
-  if(endGame === true) {
-    return (
-      <Button className="show-results"><Link to="/show-results">показать результаты</Link></Button>
-    )
-  }
+  if(endGame === true) return <ShowResults />
   
-
   return (
     <div className="game-container">
       <div className="word-translate">{cards[counter].wordTranslate.join(", ")}</div>
@@ -72,7 +67,7 @@ const Spelling = () => {
         <div ref={marker} className="marker"></div>
       </div>
       <div className="check-answer">
-        <Button onClick={() => checkAnswer()}>Ответ</Button>
+        <Button className="answer-button" onClick={() => checkAnswer()}>Ответ</Button>
         <Button>да хуй его знает</Button>
       </div>
       
