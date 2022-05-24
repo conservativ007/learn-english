@@ -24,7 +24,6 @@ export function checkUserAnswer(
 
   let timer = setTimeout(() => {
     if(marker.current === null) return;
-    console.log(marker)
     marker.current.className = "marker";
     setInputAnswer("");
   }, 1000);

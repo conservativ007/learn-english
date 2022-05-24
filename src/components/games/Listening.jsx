@@ -37,7 +37,6 @@ const Listening = () => {
 
   useEffect(() => {
     if(counter === 0) return;
-    console.log(counter)
     speech(cards[counter].word, 1);
   }, [cards, counter]);
 

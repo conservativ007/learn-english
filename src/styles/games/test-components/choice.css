@@ -1,0 +1,45 @@
+.questions {
+  width: 100%;
+}
+
+.choice-container {
+  padding: 20px;
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 50px;
+  background-color: white;
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+
+.choice-question_word {
+  font-size: 25px;
+}
+
+.choice-explain {
+  margin-top: 40px;
+  font-size: 20px;
+  font-weight: 500;
+  color: gray;
+}
+
+.answer-container {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.same-choice-answer {
+  margin: 20px;
+  padding: 10px 15px;
+  border: 2px solid silver;
+  border-radius: 10px;
+}
+
+.same-choice-answer:hover {
+  border: 2px solid #00cec9;
+  cursor: pointer;
+}
+
+.same-choice-answer.active {
+  border: 2px solid #00cec9;
+}

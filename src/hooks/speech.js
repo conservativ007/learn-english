@@ -9,12 +9,8 @@ export function speech(sound, timedelay = false) {
     let timerId = setTimeout(() => {
       speech.speak(text);
     }, Number(`${timedelay}000`))
-    console.log(`есть задержка: ${timedelay}000 c`);
     return () => clearTimeout(timerId);
   } 
-    
-  
-  
   speech.speak(text);
 }
 

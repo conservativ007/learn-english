@@ -10,6 +10,7 @@ const Games = ({ setName }) => {
       <div className="games-train">
         <Link to={`/spelling/${setName}`}>письмо</Link>
         <Link to={`/listening/${setName}`}>аудирование</Link>
+        <Link to={`/test/${setName}`}>тест</Link>
       </div>
     </div>
   );

@@ -1,0 +1,30 @@
+.chouse-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.divider {
+  font-size: 25px;
+}
+
+.user-choice {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.user-chosen {
+  border: 2px solid silver;
+  padding: 10px 55px;
+  border-radius: 10px;
+}
+
+.user-chosen:hover {
+  cursor: pointer;
+  border: 2px solid #00cec9;
+}
+
+.active {
+  border: 2px solid #00cec9;
+}

@@ -44,6 +44,8 @@ const Createset = () => {
       word: world.trim(),
       wordTranslate: worldTranslate.split(","),
       phrase: phrase,
+      isTrueUserAnswer: false,
+      userAnswer: ""
     }
     dispatch(addWordsAction(testObj));
     setWorld("");
