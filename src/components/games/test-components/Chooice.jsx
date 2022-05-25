@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { useParams } from 'react-router';
+import { addCustomClass } from '../../../hooks/addCustomClass';
 import { getCards } from '../../../hooks/getCards';
 import "../../../styles/games/test-components/choice.css";
 
@@ -10,29 +11,24 @@ const Chooice = ({ card }) => {
   const params = useParams();
   const [cards] = useState(getCards(params));
 
-  function prepareToDomElem(e, card) {
-    let elems = refAnswerContainer.current.querySelectorAll('.same-choice-answer');
-    addClassActive(e, elems);
-    addData(e, card, elems);
+  function prepareToDomElem(e, userAnswerId, trueId) {
+    addCustomClass(e, refAnswerContainer, "same-choice-answer", "active");
+    addData(e, userAnswerId, trueId);
+
+    window.scrollTo(0, refAnswerContainer.current.dataset.ofsety);
   }
 
-  function addClassActive(e, elems) {
-    [...elems].map(i => i.className = "same-choice-answer");
-    e.target.classList.add("active");
-  }
-
-  function addData(e, card) {
-    let userAnswer = e.target.innerHTML;
-    e.target.setAttribute("data-user-answer", userAnswer);
-    e.target.setAttribute("data-user-answer-trueID", card.id);
+  function addData(e, userAnswerId, trueId) {
+    e.target.setAttribute("data-user-trueID", trueId);
+    e.target.setAttribute("data-user-answerID", userAnswerId);
   }
 
 
   return (
-    <div className="choice-container">
+    <div ref={refAnswerContainer} className="choice-container">
       <div className="choice-question_word">{card.wordTranslate}</div>
       <div className="choice-explain">Выберите правильный термин</div>
-      <div ref={refAnswerContainer} className="answer-container">
+      <div  className="answer-container">
         {
           cards.map((item, index) => {
             if(index >= 4) return null;
@@ -40,7 +36,7 @@ const Chooice = ({ card }) => {
             <div 
               key={index} 
               className="same-choice-answer"
-              onClick={(e) => prepareToDomElem(e, item)}
+              onClick={(e) => prepareToDomElem(e, item.id, card.id)}
             >
               {item.word}
             </div>

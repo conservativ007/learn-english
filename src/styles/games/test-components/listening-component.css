@@ -1,0 +1,10 @@
+.play-question {
+  margin-left: 20px;
+  font-size: 30px;
+  color: #b2bec3;
+  cursor: pointer;
+}
+
+.answer-container button{
+  margin-top: 20px;
+}

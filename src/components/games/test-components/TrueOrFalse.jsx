@@ -4,6 +4,7 @@ import { getCards } from '../../../hooks/getCards';
 import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
 
 import "../../../styles/games/test-components/true-or-false.css";
+import { addCustomClass } from '../../../hooks/addCustomClass';
 
 const TrueOrFalse = ({ card, index }) => {
 
@@ -11,33 +12,28 @@ const TrueOrFalse = ({ card, index }) => {
   const [cards] = useState(getCards(params));
   const refContainer = useRef(null);
 
-  function prepare(e, cardId, userAnswerId, bool) {
-    let testOne = false;
-    let elems = refContainer.current.querySelectorAll(".user-chosen");
-    [...elems].map(i => i.className = "user-chosen");
-    e.target.classList.add("active");
+  function prepare(e, userAnswerId, trueId, bool) {
 
-    if(bool === true && cardId === userAnswerId) {
-      testOne = true;
-    }
-    
-    if(bool === false && cardId !== userAnswerId) {
-      testOne = true;
-    }
+    addCustomClass(e, refContainer, "user-chosen", "active");
+    let isUserAnswerTrue = getIsUserAnswerTrue(bool, trueId, userAnswerId);
 
+    e.target.setAttribute("data-user-trueID", trueId);
+    e.target.setAttribute("data-user-answerID", isUserAnswerTrue === true ? trueId : 0);
 
-
-    console.log(testOne);
-    
-    // addData(e.target, cardId, userAnswerId);
+    window.scrollTo(0, refContainer.current.dataset.ofsety);
   }
 
-  // function addData(target, cardId, userAnswerId) {
-  //   target.setAttribute("data-user-answer", userAnswerId);
-  //   target.setAttribute("data-user-answer-trueID", cardId);
-  // }
-
-  
+  function getIsUserAnswerTrue(bool, trueId, userAnswerId) {
+    let isUserAnswerTrue = false;
+    if(bool === true && trueId === userAnswerId) {
+      isUserAnswerTrue = true;
+    }
+    
+    if(bool === false && trueId !== userAnswerId) {
+      isUserAnswerTrue = true;
+    }
+    return isUserAnswerTrue;
+  }
 
 
   return (
