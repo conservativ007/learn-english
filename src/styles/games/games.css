@@ -38,3 +38,70 @@
   margin-top: 30px;
   display: flex;
 }
+
+.choice-container {
+  position: relative;
+  padding: 20px;
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 50px;
+  background-color: white;
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+
+.choice-question_word {
+  font-size: 25px;
+}
+
+.choice-explain {
+  margin-top: 40px;
+  font-size: 20px;
+  font-weight: 500;
+  color: gray;
+}
+
+.answer-container {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.questions {
+  width: 100%;
+}
+
+.same-choice-answer {
+  margin: 20px;
+  padding: 10px 15px;
+  border: 2px solid silver;
+  border-radius: 10px;
+}
+
+.same-choice-answer:hover {
+  border: 2px solid #00cec9;
+  cursor: pointer;
+}
+
+.same-choice-answer.active {
+  border: 2px solid #00cec9;
+}
+
+.user-answer_false, 
+.user-answer_true {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  font-size: 30px;
+  transform: rotate(-45deg);
+  border: 5px dotted #b2bec3;
+  border-radius: 5px;
+  padding: 0 20px;
+}
+
+.user-answer_true {
+  color: green;
+}
+
+.user-answer_false {
+  color: red;
+}

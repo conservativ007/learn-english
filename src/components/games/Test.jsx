@@ -5,20 +5,38 @@ import Chooice from './test-components/Chooice';
 import { getCards } from '../../hooks/getCards';
 import TrueOrFalse from './test-components/TrueOrFalse';
 import ListeningComponent from './test-components/ListeningComponent';
+import Header from '../Header';
 
 const Test = () => {
   const params = useParams();
   const [cards] = useState(getCards(params));
-
   const questionsDom = useRef(null);
 
   function getUserAnswers() {
     let domElems = questionsDom.current;
     let foundElems = domElems.querySelectorAll(".active");
 
-    [...foundElems].map(item => {
-      return console.log(item);
+    let userAnswers = [...foundElems].map(item => {
+      if(item.dataset.userTrueid === item.dataset.userAnswerid) return true;
+      return false;
     })
+
+    let elems = [...questionsDom.current.querySelectorAll(".choice-container")];
+    elems.forEach((item, index) => {
+      let div = document.createElement("div");
+      
+      if(userAnswers[index] === true) {
+        div.className = "user-answer_true";
+        div.innerHTML = "true";
+        return item.appendChild(div);
+      }
+      div.className = "user-answer_false";
+      div.innerHTML = "false";
+      return item.appendChild(div);
+    });
+
+    window.scrollTo(0, 0);
+    questionsDom.current.style.pointerEvents = "none";
   }
 
   useEffect(() => {
@@ -30,27 +48,30 @@ const Test = () => {
   }, []);
   
   return (
-    <div className="game-container">
-      <div ref={questionsDom} className="questions">
-        {
-          cards.map((card, index) => {
-            if(index % 3 === 0) {
-              return <ListeningComponent key={card.id} card={card} />
-            } 
-            if(index % 2 === 0) {
-              return <Chooice key={card.id} card={card} />
-            } 
-            return <TrueOrFalse key={card.id} card={card} index={index} />
-          })
-        }
+    <>
+      <Header />
+      <div className="game-container">
+        <div ref={questionsDom} className="questions">
+          {
+            cards.map((card, index) => {
+              if(index % 3 === 0) {
+                return <ListeningComponent key={card.id} card={card} lastCard={cards.length - 1 === index ? true : false} />
+              } 
+              if(index % 2 === 0) {
+                return <Chooice key={card.id} card={card} lastCard={cards.length - 1 === index ? true : false} />
+              } 
+              return <TrueOrFalse key={card.id} card={card} index={index} lastCard={cards.length - 1 === index ? true : false} />
+            })
+          }
+        </div>
+        
+        <Button 
+          onClick={() => getUserAnswers()} 
+          style={{marginBottom: "50px"}}
+        >посмотреть результаты
+        </Button>
       </div>
-      
-      <Button 
-        onClick={() => getUserAnswers()} 
-        style={{marginBottom: "50px"}}
-      >посмотреть результаты
-      </Button>
-    </div>
+    </>
   );
 }
 

@@ -1,10 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { FormControl, Button } from 'react-bootstrap';
 import { AiFillSound } from 'react-icons/ai';
 import { speech } from '../../../hooks/speech';
 import "../../../styles/games/test-components/listening-component.css";
 
-const ListeningComponent = ({ card }) => {
+const ListeningComponent = ({ card, lastCard = false }) => {
 
   const [userAnswer, setUserAnswer] = useState("");
   const refContainer = useRef(null);
@@ -24,9 +24,11 @@ const ListeningComponent = ({ card }) => {
     e.target.setAttribute("data-user-trueID", card.id);
     e.target.setAttribute("data-user-answerID", isUserAnswerTrue === true ? card.id : 0);
     
-    window.scrollTo(0, refContainer.current.dataset.ofsety);
+    if(lastCard === false) {
+      window.scrollTo(0, refContainer.current.dataset.ofsety);
+    }
   }
-  
+
   return (
     <div ref={refContainer} className="choice-container">
       <div className="choice-question_word">

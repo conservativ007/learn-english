@@ -1,7 +1,15 @@
-export function getCards(params) {
+export function getCards(params, card) {
   let array = JSON.parse(localStorage.getItem(params.card_name));
-  return shuffle(array);
+  array = shuffle(array);
+  let result = [];
   
+  if(card !== undefined) {
+    result = array.filter(item => item.id !== card.id);
+    result.unshift(card);
+    result = result.slice(0, 4);
+    array = result;
+  }
+  return shuffle(array);
 }
 
 

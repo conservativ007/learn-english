@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import { useParams } from 'react-router';
 import { getCards } from '../../../hooks/getCards';
 import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
@@ -6,7 +6,7 @@ import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
 import "../../../styles/games/test-components/true-or-false.css";
 import { addCustomClass } from '../../../hooks/addCustomClass';
 
-const TrueOrFalse = ({ card, index }) => {
+const TrueOrFalse = ({ card, index, lastCard = false }) => {
 
   const params = useParams();
   const [cards] = useState(getCards(params));
@@ -20,7 +20,9 @@ const TrueOrFalse = ({ card, index }) => {
     e.target.setAttribute("data-user-trueID", trueId);
     e.target.setAttribute("data-user-answerID", isUserAnswerTrue === true ? trueId : 0);
 
-    window.scrollTo(0, refContainer.current.dataset.ofsety);
+    if(lastCard === false) {
+      window.scrollTo(0, refContainer.current.dataset.ofsety);
+    }
   }
 
   function getIsUserAnswerTrue(bool, trueId, userAnswerId) {

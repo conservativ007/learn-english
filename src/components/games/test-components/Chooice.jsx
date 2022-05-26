@@ -1,21 +1,23 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { addCustomClass } from '../../../hooks/addCustomClass';
 import { getCards } from '../../../hooks/getCards';
 import "../../../styles/games/test-components/choice.css";
 
 
-const Chooice = ({ card }) => {
+const Chooice = ({ card, lastCard = false}) => {
 
   const refAnswerContainer = useRef(null);
   const params = useParams();
-  const [cards] = useState(getCards(params));
+  const [cards] = useState(getCards(params, card));
 
   function prepareToDomElem(e, userAnswerId, trueId) {
     addCustomClass(e, refAnswerContainer, "same-choice-answer", "active");
     addData(e, userAnswerId, trueId);
 
-    window.scrollTo(0, refAnswerContainer.current.dataset.ofsety);
+    if(lastCard === false) {
+      window.scrollTo(0, refAnswerContainer.current.dataset.ofsety);
+    }
   }
 
   function addData(e, userAnswerId, trueId) {
