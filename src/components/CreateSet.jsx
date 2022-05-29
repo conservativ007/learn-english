@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, InputGroup, FormControl } from 'react-bootstrap';
-import { useSelector, useDispatch } from 'react-redux';
 import { saveToLocaleStorage } from '../hooks/saveToLocalStorage';
-import { addWordsAction } from '../store/wordsReducer';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import "../styles/createSet.css";
 
@@ -20,41 +18,45 @@ const styles = {
 
 const Createset = () => {
 
-  let someWords = useSelector(state => state.wordsReducer);
-  let dispatch = useDispatch();
+  const params = useParams();
 
+  const [nameSet, setNameSet] = useState(params.set_name === "default" ? "" : params.set_name );
+  const [isSet, setIsSet] = useState(params.set_name === "default" ? false : true);
 
-  const [nameSet, setNameSet] = useState("");
-  const [isSet, setIsSet] = useState(false);
+  const [userWord, setUserWord] = useState("");
+  const [wordTranslate, setwordTranslate] = useState("");
+  const [phrase, setwordPhrase] = useState("");
 
-  const [world, setWorld] = useState("");
-  const [worldTranslate, setWorldTranslate] = useState("");
-  const [phrase, setWorldPhrase] = useState("");
-
+  const [words, setWords] = useState([]);
 
   function setNameToSet() {
     if(nameSet.length === 0) return;
     setIsSet(true);
   } 
 
-  function addWorld() { 
-    let testObj = {
+  function addword() { 
+    let word = {
       id: Date.now(),
       category: nameSet,
-      word: world.trim(),
-      wordTranslate: worldTranslate.split(","),
+      word: userWord.trim(),
+      wordTranslate: wordTranslate.split(","),
       phrase: phrase,
       isTrueUserAnswer: false,
       userAnswer: ""
     }
-    dispatch(addWordsAction(testObj));
-    setWorld("");
-    setWorldTranslate("");
-    setWorldPhrase("");
+
+    setWords([...words, word]);
+    setUserWord("");
+    setwordTranslate("");
+    setwordPhrase("");
   }
 
-  function saveSetWorlds() {
-    saveToLocaleStorage(nameSet, someWords)
+  function saveSetwords() {
+    if(params.set_name === "default") {
+      saveToLocaleStorage(nameSet, words);
+    } else {
+      saveToLocaleStorage(nameSet, words, "add");
+    }
   }
 
   if(isSet === false) {
@@ -77,36 +79,35 @@ const Createset = () => {
       <InputGroup className="mb-3">
       <FormControl
         placeholder="введите слово"
-        onChange={(e) => setWorld(e.target.value)}
-        value={world}
+        onChange={(e) => setUserWord(e.target.value)}
+        value={userWord}
       />
       </InputGroup>
 
       <InputGroup className="mb-3">
       <FormControl
         placeholder="введите перевод: word1, word2,..."
-        onChange={(e) => setWorldTranslate(e.target.value)}
-        value={worldTranslate}
+        onChange={(e) => setwordTranslate(e.target.value)}
+        value={wordTranslate}
       />
       </InputGroup>
       <InputGroup className="mb-3">
       <FormControl
         placeholder="введите фразу со словом"
-        onChange={(e) => setWorldPhrase(e.target.value)}
+        onChange={(e) => setwordPhrase(e.target.value)}
         value={phrase}
       />
       </InputGroup>
       <div className="button-controls">
-        <Button onClick={() => addWorld()} >добавить слово</Button>
+        <Button onClick={() => addword()} >добавить слово</Button>
           <Link 
-            onClick={() => saveSetWorlds()}
+            onClick={() => saveSetwords()}
             style={styles.link} 
             className="save" 
             to="/">
               save
           </Link>
       </div>
-      
     </div>
   );
 }

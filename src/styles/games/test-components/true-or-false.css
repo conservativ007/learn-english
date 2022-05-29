@@ -20,6 +20,12 @@
   border-radius: 10px;
 }
 
+@media (max-width: 440px) {
+  .user-chosen {
+    padding: 5px 35px;
+  }
+}
+
 .user-chosen:hover {
   cursor: pointer;
   border: 2px solid #00cec9;

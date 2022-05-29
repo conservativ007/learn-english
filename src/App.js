@@ -7,17 +7,20 @@ import Spelling from './components/games/Spelling';
 import Listening from './components/games/Listening';
 import Test from './components/games/Test';
 import ShowResults from './components/games/ShowResults';
+import Edit from './components/games/Edit';
+import AddWord from './components/games/AddWord';
 
 function App() {
 
   let element = useRoutes([
     { path: "/", element: <Home /> },
     { path: "show-card/:card_name", element: <ShowCard /> },
-    { path: "create-set", element: <Createset /> },
+    { path: "create-set/:set_name", element: <Createset /> },
     { path: "spelling/:card_name", element: <Spelling /> },
     { path: "listening/:card_name", element: <Listening /> },
     { path: "test/:card_name", element: <Test /> },
-    { path: "/show-results", element: <ShowResults /> },
+    { path: "show-results", element: <ShowResults /> },
+    { path: "edit/:card_name", element: <Edit /> },
   ]);
 
   return element;

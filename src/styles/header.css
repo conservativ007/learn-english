@@ -1,9 +1,21 @@
 header {
+  width: 500px;
   height: 50px;
-  width: 100%;
-  background-color: #636e72;
+  background-color: #0984e3;
   color: white;
   font-size: 25px;
+}
+
+@media (max-width: 767px) {
+  header {
+    width: 400px;
+  }
+}
+
+@media (max-width: 440px) {
+  header {
+    width: 320px;
+  }
 }
 
 header a {
