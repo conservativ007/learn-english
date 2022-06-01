@@ -1,7 +1,5 @@
 #root {
   min-height: 100vh;
-  /* background-color: #dfe6e9; */
-  background-color: #f6f7fb;
   overflow: hidden;
 
   display: flex;

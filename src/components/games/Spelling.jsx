@@ -20,8 +20,9 @@ const Spelling = () => {
   let [endGame, setEndGame] = useState(false);
 
   const marker = useRef(null);
+  const trueAnswer = useRef(null);
 
-  function checkAnswer() {
+  function checkAnswer(bool = false) {
     let trueAnswer = cards[counter].word;
 
     // добавление классов 
@@ -35,8 +36,9 @@ const Spelling = () => {
 
     dispatch(userAnswerAction({
       isTrueAnswer: inputAnswer === trueAnswer, // true or false
-      userAnswer: inputAnswer,
+      userAnswer: bool === true ? inputAnswer : "не знаю",
       trueAnswer: trueAnswer,
+      question: String(cards[counter].wordTranslate).trim()
     }));
 
     let timer = setTimeout(() => {
@@ -53,11 +55,21 @@ const Spelling = () => {
     return () => clearTimeout(timer);
   }
 
+  function setFalseAnswer() {
+    trueAnswer.current.innerHTML = cards[counter].word;
+    setInputAnswer("");
+    setTimeout(() => {
+      trueAnswer.current.innerHTML = "";
+    }, 1000);
+    
+    checkAnswer(false);
+  }
+
   if(endGame === true) return <ShowResults />
   
   return (
     <div className="game-container">
-      <div className="word-translate">{cards[counter].wordTranslate.join(", ")}</div>
+      <div className="word-translate">{cards[counter].wordTranslate}</div>
       <div className="user-answer">
         <FormControl
           placeholder="введите перевод на английском"
@@ -65,12 +77,12 @@ const Spelling = () => {
           onChange={e => setInputAnswer(e.target.value)}
         />
         <div ref={marker} className="marker"></div>
+        <div ref={trueAnswer} className="spelling-true-answer"></div>
       </div>
       <div className="check-answer">
-        <Button className="answer-button" onClick={() => checkAnswer()}>Ответ</Button>
-        <Button>да хуй его знает</Button>
+        <Button className="answer-button" onClick={() => checkAnswer(true)}>Ответ</Button>
+        <Button onClick={() => setFalseAnswer()} >не знаю</Button>
       </div>
-      
     </div>
   );
 }

@@ -8,7 +8,6 @@ import Listening from './components/games/Listening';
 import Test from './components/games/Test';
 import ShowResults from './components/games/ShowResults';
 import Edit from './components/games/Edit';
-import AddWord from './components/games/AddWord';
 
 function App() {
 

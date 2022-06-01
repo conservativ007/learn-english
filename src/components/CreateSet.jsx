@@ -39,7 +39,7 @@ const Createset = () => {
       id: Date.now(),
       category: nameSet,
       word: userWord.trim(),
-      wordTranslate: wordTranslate.split(","),
+      wordTranslate: wordTranslate.trim(),
       phrase: phrase,
       isTrueUserAnswer: false,
       userAnswer: ""
@@ -86,7 +86,7 @@ const Createset = () => {
 
       <InputGroup className="mb-3">
       <FormControl
-        placeholder="введите перевод: word1, word2,..."
+        placeholder="введите перевод"
         onChange={(e) => setwordTranslate(e.target.value)}
         value={wordTranslate}
       />

@@ -32,6 +32,21 @@
   color: red;
 }
 
+.answer-container {
+  position: relative;
+}
+
+.answer-container .answer-help {
+  position: absolute;
+  opacity: 0;
+  top: 5px;
+  right: 10px;
+  visibility: hidden;
+  transition: 1s opacity, 1s visibility;
+}
+
+
+
 .answer-button {
   margin-right: 10px;
 }

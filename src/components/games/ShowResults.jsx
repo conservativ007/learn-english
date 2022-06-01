@@ -13,33 +13,22 @@ const ShowResults = () => {
   return (
     <div className="results">
       <h2>результаты</h2>
-      <div className="results-answers">
-        <div className="right-answers">
-          <div>верные ответы</div>
-          {
-            results.userAnswer.map((item, index) => 
-              item.isTrueAnswer ? <div key={index} className="true-answer">{item.trueAnswer}</div> : null
-            )
-          }
-        </div>
-        <div className="wrong-answers">
-        <div>неверные ответы</div>
-          {
-            results.userAnswer.map((item, index) => 
-              item.isTrueAnswer ? null : 
-              <div key={index} className="false-answer">
-                <div className="user-false-answer">{item.userAnswer}</div>
-                <div className="true-answer">{item.trueAnswer}</div>
-              </div>
-            )
-          }
-        </div>
-      </div>
+      {
+        results.userAnswer.map(item => 
+          <div className='res_answers'>
+            <div>вопрос: {item.question}</div>
+            <div>правильный ответ: {item.trueAnswer}</div>
+            <div>вы ответили: {item.userAnswer}</div>
+            <div className="answer-marker" style={{backgroundColor: item.isTrueAnswer ? "#00b894" : "#d63031"}}></div>
+            {item.isTrueAnswer ? <div className='res-true_answer'>&#10003;</div> : <div className='res-false_answer'>&#10007;</div>}
+          </div>
+        )
+      }
       <div className="counter-answers">
         <div>правильных ответов: {results.correctAnswerCounter}</div>
         <div>неправильных ответов: {results.incorrectAnswerCounter}</div>
       </div>
-      <Button onClick={() => dispatch(zeroingAction())}><Link className="button-link" to="/">сьебаться на глауную</Link></Button>
+      <Button onClick={() => dispatch(zeroingAction())}><Link className="button-link" to="/">на главную</Link></Button>
     </div>
     
   )

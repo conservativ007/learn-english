@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router';
 import { Button } from 'react-bootstrap';
+import { HiArrowNarrowLeft, HiArrowNarrowRight } from 'react-icons/hi';
 import { AiFillSound } from 'react-icons/ai';
 import "../styles/show-card.css";
 import Header from './Header';
@@ -47,21 +48,18 @@ const ShowCard = () => {
                 <AiFillSound onClick={() => speech(cards[counter].word)} className="sound" />
               </div>
               <div className="flip-card-back">
-                <div className="card-word_translate">{cards[counter].wordTranslate.join(",")}</div>
+                <div className="card-word_translate">{cards[counter].wordTranslate}</div>
                 <div className="card-word_phrase">{cards[counter].phrase}</div>
                 <AiFillSound onClick={() => speech(cards[counter].phrase)} className="sound" />
               </div>
-              
             </div>
           </div>
         </div>
       </div>
       <div className="cards-control">
-        <Button className="button-prev" onClick={goToThePrevCard}>prev</Button>
-        <div className="cards-counter">{counter + 1}</div>
-        <div>/</div>
-        <div>{cards.length}</div>
-        <Button className="button-next" onClick={goToTheNextCard}>next</Button>
+        <HiArrowNarrowLeft className="arrow" onClick={goToThePrevCard} />
+        <div className="cards-counter">{counter + 1} / {cards.length}</div>
+        <HiArrowNarrowRight className="arrow" onClick={goToTheNextCard} />
       </div>
       <Games setName={name} />
     </>

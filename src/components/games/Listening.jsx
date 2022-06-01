@@ -49,7 +49,6 @@ const Listening = () => {
 
   return (
     <div className="game-container"> 
-      <h2>this is listening</h2>
       <div className="listening_sound-container">
         <div className="listening_sound-content">
           <AiFillSound style={{cursor: "grab"}} className="listening-sound" onClick={() => speech(cards[counter].word)} />
@@ -74,7 +73,7 @@ const Listening = () => {
         </div>
         <div className="check-answer">
           <Button className="answer-button" onClick={() => testFuncCheckAnswer()}>Ответ</Button>
-          <Button>да хуй его знает</Button>
+          <Button>не знаю</Button>
         </div>
       </div>
     </div>

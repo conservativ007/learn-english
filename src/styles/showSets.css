@@ -1,22 +1,42 @@
 .set-container {
+  width: 500px;
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+}
+
+@media (max-width: 767px) {
+  .set-container {
+    width: 400px;
+  }
+}
+
+@media (max-width: 440px) {
+  .set-container {
+    width: 320px;
+  }
 }
 
 .sets {
+  margin-top: 20px;
   display: flex;
+  flex-direction: column;
 }
 
 .set {
-  width: 150px;
-  height: 150px;
+  width: 100%;
+  height: 50px;
   margin-right: 10px;
   border-radius: 10px;
 
   padding: 5px;
   color: white;
   font-size: 20px;
+  transition: .2s;
+}
+
+.set:hover {
+  transform: scale(1.03,1.03);
 }
 
 .set:last-child {

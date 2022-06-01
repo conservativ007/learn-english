@@ -26,6 +26,7 @@ const TrueOrFalse = ({ card, index, lastCard = false }) => {
   }
 
   function getIsUserAnswerTrue(bool, trueId, userAnswerId) {
+    
     let isUserAnswerTrue = false;
     if(bool === true && trueId === userAnswerId) {
       isUserAnswerTrue = true;

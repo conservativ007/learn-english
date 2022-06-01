@@ -1,7 +1,14 @@
 .results {
+  margin-top: 20px;
   width: 400px;
   font-size: 20px;
 }
+
+.results h2 {
+  margin-bottom: 40px;
+}
+
+
 
 .right-answers,
 .wrong-answers {
@@ -13,8 +20,6 @@
 }
 
 .false-answer {
-  display: flex;
-  justify-content: space-between;
   color: #ff7675;
 }
 
@@ -32,4 +37,43 @@
 .button-link:hover {
   color: white;
 }
+
+
+.res_answers {
+  position: relative;
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.answer-marker {
+  position: absolute;
+  top: calc(50% - 35px);
+  left: 0;
+  height: 70px;
+  width: 3px;
+  /* background-color: #00b894; */
+}
+
+.res-true_answer,
+.res-false_answer {
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  font-size: 40px;
+}
+
+.res-true_answer {
+  color: #00b894;
+}
+
+.res-false_answer {
+  color: #d63031;
+}
+
+.counter-answers {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 

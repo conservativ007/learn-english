@@ -8,6 +8,7 @@ const ListeningComponent = ({ card, lastCard = false }) => {
 
   const [userAnswer, setUserAnswer] = useState("");
   const refContainer = useRef(null);
+  const refAnswerHelp = useRef(null);
 
   function playQuestion() {
     speech(card.word);
@@ -15,8 +16,10 @@ const ListeningComponent = ({ card, lastCard = false }) => {
 
   function checkUserAnswer(e) {
     let isUserAnswerTrue = false;
+    let testOne = String(userAnswer.trim());
+    let testTwo = String(card.wordTranslate);
 
-    if(userAnswer.trim() === card.wordTranslate.join(",")) {
+    if(testOne === testTwo) {
       isUserAnswerTrue = true;
     }
 
@@ -28,6 +31,17 @@ const ListeningComponent = ({ card, lastCard = false }) => {
       window.scrollTo(0, refContainer.current.dataset.ofsety);
     }
   }
+
+  // подсветить правильный ответ
+  useEffect(() => {
+    if(userAnswer.length < 4) return;
+    let tryAnswer = String(card.wordTranslate);
+    let test = tryAnswer.length * 0.70;
+    if(tryAnswer.includes(userAnswer) && userAnswer.length >= test) {
+      refAnswerHelp.current.style.visibility = "visible";
+      refAnswerHelp.current.style.opacity = 0.5;
+    } 
+  }, [userAnswer, card]);
 
   return (
     <div ref={refContainer} className="choice-container">
@@ -43,6 +57,7 @@ const ListeningComponent = ({ card, lastCard = false }) => {
           onChange={e => setUserAnswer(e.target.value)}
         />
         <Button onClick={e => checkUserAnswer(e)} >далее</Button>
+        <div ref={refAnswerHelp} className="answer-help">{card.wordTranslate}</div>
       </div>
       
     </div>

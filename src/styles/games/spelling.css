@@ -19,6 +19,12 @@
   transition: .5s;
 }
 
+.spelling-true-answer {
+  position: absolute;
+  top: 5px;
+  right: 20px;
+}
+
 .green {
   background-color: green;
 }
