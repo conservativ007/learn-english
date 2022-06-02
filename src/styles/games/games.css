@@ -65,6 +65,21 @@
   font-size: 25px;
 }
 
+.arrow-play-question {
+  color: #b2bec3;
+  margin-left: 10px;
+  position: relative;
+  animation: myfirst 1.5s linear 1.5s infinite alternate;
+}
+
+@keyframes myfirst {
+  0%   {left:0px; top:0px;}
+  50%  {left:15px; top:0px;}
+  100% {left:0px; top:0px;}
+}
+
+
+
 .choice-explain {
   margin-top: 40px;
   margin-bottom: 20px;
@@ -117,6 +132,15 @@
   border: 5px dotted #b2bec3;
   border-radius: 5px;
   padding: 0 20px;
+}
+
+@media (max-width: 767px) {
+  .user-answer_false, 
+  .user-answer_true {
+    top: 40px;
+    right: 30px;
+    font-size: 20px;
+  }
 }
 
 .user-answer_true {

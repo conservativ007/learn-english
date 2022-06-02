@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 import Chooice from './test-components/Chooice';
 import { getCards } from '../../hooks/getCards';
 import TrueOrFalse from './test-components/TrueOrFalse';
@@ -11,6 +12,8 @@ const Test = () => {
   const params = useParams();
   const [cards] = useState(getCards(params));
   const questionsDom = useRef(null);
+
+  const [endGame, setEndGame] = useState(false);
 
   function getUserAnswers() {
     let domElems = questionsDom.current;
@@ -37,6 +40,8 @@ const Test = () => {
 
     window.scrollTo(0, 0);
     questionsDom.current.style.pointerEvents = "none";
+
+    setEndGame(true);
   }
 
   useEffect(() => {
@@ -64,12 +69,23 @@ const Test = () => {
             })
           }
         </div>
+        {
+          endGame === false ? 
+          <Button 
+            onClick={() => getUserAnswers()} 
+            style={{marginBottom: "50px"}}
+          >
+            посмотреть результаты
+          </Button> :
+          <Link 
+            style={{marginBottom: "50px"}}
+            className="main-button" 
+            to="/"
+          >
+            вернуться на главную
+          </Link>
+        }
         
-        <Button 
-          onClick={() => getUserAnswers()} 
-          style={{marginBottom: "50px"}}
-        >посмотреть результаты
-        </Button>
       </div>
     </>
   );

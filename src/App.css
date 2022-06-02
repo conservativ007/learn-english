@@ -7,3 +7,17 @@
   align-items: center;
 }
 
+.main-button {
+  padding: 5px 10px;
+  text-decoration: none;
+  font-size: 18px;
+  border: 1px solid #0b5ed7;
+  background-color: #0b5ed7;
+  border-radius: 4px;
+  color: white;
+}
+
+.main-button:hover {
+  color: white;
+}
+

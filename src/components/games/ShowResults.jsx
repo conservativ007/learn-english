@@ -1,4 +1,3 @@
-import { Button } from 'react-bootstrap';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -14,8 +13,8 @@ const ShowResults = () => {
     <div className="results">
       <h2>результаты</h2>
       {
-        results.userAnswer.map(item => 
-          <div className='res_answers'>
+        results.userAnswer.map((item, index) => 
+          <div key={index} className='res_answers'>
             <div>вопрос: {item.question}</div>
             <div>правильный ответ: {item.trueAnswer}</div>
             <div>вы ответили: {item.userAnswer}</div>
@@ -28,7 +27,13 @@ const ShowResults = () => {
         <div>правильных ответов: {results.correctAnswerCounter}</div>
         <div>неправильных ответов: {results.incorrectAnswerCounter}</div>
       </div>
-      <Button onClick={() => dispatch(zeroingAction())}><Link className="button-link" to="/">на главную</Link></Button>
+      <Link 
+      onClick={() => dispatch(zeroingAction())} 
+      className="button-link main-button" 
+      to="/"
+      >
+        на главную
+      </Link>
     </div>
     
   )

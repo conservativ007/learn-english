@@ -40,7 +40,7 @@ const Edit = () => {
             )
           }
         </div>
-        <Link className="edit-button" to={`/create-set/${params.card_name}`}>добавить слово</Link>
+        <Link className="edit-button main-button" to={`/create-set/${params.card_name}`}>добавить слово</Link>
       </div>
     </>
   );

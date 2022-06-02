@@ -10,6 +10,15 @@ const Showsets = () => {
   const dispatch = useDispatch();
   let backgrounds = ["#ff7675", "#fab1a0", "#55efc4", "#81ecec", "#ff9ff3", "#feca57", "#ff6b6b", "#1dd1a1"];
   let sets = JSON.parse(localStorage.getItem("LEARN_ENGLISH"));
+
+  if(!sets) {
+    return (
+      <div className="set-container">
+        <h2>У вас ещё нету подборки создайте первую :)</h2>
+        <Link className="set-link" to={`/create-set/${"default"}`}>создать первую подборку</Link>
+      </div>
+    )
+  }
   
   if(sets && sets.length > 0)
 
