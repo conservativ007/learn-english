@@ -1,11 +1,11 @@
-import React, { useRef, useState} from 'react';
+import React, { useRef, useState } from 'react';
 import { Button, FormControl } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
-import { userAnswerAction, correctAction, incorrectAction } from '../../store/answersReducer';
 import ShowResults from './ShowResults';
 
 import "../../styles/games/spelling.css"
+import { checkUserAnswer } from '../../hooks/checkUserAnswer';
 
 const Spelling = () => {
 
@@ -20,49 +20,27 @@ const Spelling = () => {
   let [endGame, setEndGame] = useState(false);
 
   const marker = useRef(null);
-  const trueAnswer = useRef(null);
+  const DOMElemTrueAnswer = useRef(null);
 
-  function checkAnswer(bool = false) {
-    let trueAnswer = cards[counter].word;
+  function testCheckAnswer(bool = false) {
+    checkUserAnswer(
+      cards[counter].word, 
+      cards[counter].wordTranslate,
+      inputAnswer, 
+      marker, 
+      DOMElemTrueAnswer,
+      dispatch,
+      setInputAnswer,
+      bool,
+      setCounter
+    );
 
-    // добавление классов 
-    if(inputAnswer === trueAnswer) {
-      marker.current.classList.add("green");
-      dispatch(correctAction());
-    } else {
-      marker.current.classList.add("red");
-      dispatch(incorrectAction());
-    }
-
-    dispatch(userAnswerAction({
-      isTrueAnswer: inputAnswer === trueAnswer, // true or false
-      userAnswer: bool === true ? inputAnswer : "не знаю",
-      trueAnswer: trueAnswer,
-      question: String(cards[counter].wordTranslate).trim()
-    }));
-
-    let timer = setTimeout(() => {
-      
-      setCounter(counter += 1);
-      if(counter >= cards.length) {
+    setTimeout(() => {
+      if(counter >= cards.length - 1) {
         setCounter(0);
         setEndGame(true);
       } 
-      marker.current.className = "marker";
-      setInputAnswer("");
     }, 1000);
-
-    return () => clearTimeout(timer);
-  }
-
-  function setFalseAnswer() {
-    trueAnswer.current.innerHTML = cards[counter].word;
-    setInputAnswer("");
-    setTimeout(() => {
-      trueAnswer.current.innerHTML = "";
-    }, 1000);
-    
-    checkAnswer(false);
   }
 
   if(endGame === true) return <ShowResults />
@@ -77,11 +55,11 @@ const Spelling = () => {
           onChange={e => setInputAnswer(e.target.value)}
         />
         <div ref={marker} className="marker"></div>
-        <div ref={trueAnswer} className="spelling-true-answer"></div>
+        <div ref={DOMElemTrueAnswer} className="spelling-true-answer"></div>
       </div>
       <div className="check-answer">
-        <Button className="answer-button" onClick={() => checkAnswer(true)}>Ответ</Button>
-        <Button onClick={() => setFalseAnswer()} >не знаю</Button>
+        <Button className="answer-button" onClick={() => testCheckAnswer(true)}>Ответ</Button>
+        <Button onClick={() => testCheckAnswer(false)} >не знаю</Button>
       </div>
     </div>
   );

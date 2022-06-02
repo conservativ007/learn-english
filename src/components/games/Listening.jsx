@@ -3,14 +3,14 @@ import {useParams} from "react-router";
 import { useState } from 'react';
 import { useDispatch } from "react-redux";
 
-import "../../styles/games/listening.css";
-
 import { AiFillSound } from 'react-icons/ai';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { Button, FormControl } from 'react-bootstrap';
 import { speech } from '../../hooks/speech';
-import { checkUserAnswer } from '../../hooks/checkUserAnswer';
+import { checkUserAnswer } from "../../hooks/checkUserAnswer";
 import ShowResults from './ShowResults';
+
+import "../../styles/games/listening.css";
 
 const Listening = () => {
 
@@ -18,21 +18,25 @@ const Listening = () => {
   const [cards] = useState(JSON.parse(localStorage.getItem(params.card_name)));
   let [counter, setCounter] = useState(0);
   let [endGame, setEndGame] = useState(false);
-  const [inputAnswer, setInputAnswer] = useState("");
+  const [userAnswer, setUserAnswer] = useState("");
 
   let dispatch = useDispatch();
 
   const marker = useRef(null);
+  const DOMElemTrueAnswer = useRef(null);
 
-  function testFuncCheckAnswer() {
+  function testFuncCheckAnswer(bool = false) {
     checkUserAnswer(
       cards[counter].word, 
-      inputAnswer, 
+      cards[counter].word, 
+      userAnswer, 
       marker, 
+      DOMElemTrueAnswer,
       dispatch,
-      setInputAnswer,
+      setUserAnswer,
+      bool,
+      setCounter
     );
-    setCounter(counter + 1)
   }
 
   useEffect(() => {
@@ -66,14 +70,15 @@ const Listening = () => {
         <div className="user-answer">
           <FormControl
             placeholder="введите что слышите"
-            value={inputAnswer}
-            onChange={e => setInputAnswer(e.target.value)}
+            value={userAnswer}
+            onChange={e => setUserAnswer(e.target.value)}
           />
           <div ref={marker} className="marker"></div>
+          <div ref={DOMElemTrueAnswer} className="spelling-true-answer"></div>
         </div>
         <div className="check-answer">
-          <Button className="answer-button" onClick={() => testFuncCheckAnswer()}>Ответ</Button>
-          <Button>не знаю</Button>
+          <Button className="answer-button" onClick={() => testFuncCheckAnswer(true)}>Ответ</Button>
+          <Button onClick={() => testFuncCheckAnswer(false)}>не знаю</Button>
         </div>
       </div>
     </div>
