@@ -1,20 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button, InputGroup, FormControl } from 'react-bootstrap';
 import { saveToLocaleStorage } from '../hooks/saveToLocalStorage';
 import { Link, useParams } from 'react-router-dom';
 
 import "../styles/createSet.css";
-
-const styles = {
-  formContainer: {
-    margin: "20px auto",
-    width: "600px"
-  },
-  link: {
-    color: "white",
-    textDecoration: "none",
-  }
-}
 
 const Createset = () => {
 
@@ -61,52 +50,56 @@ const Createset = () => {
 
   if(isSet === false) {
     return (
-      <div style={styles.formContainer}>
-        <InputGroup className="mb-3">
-        <FormControl
-          placeholder="введите название сета"
-          onChange={(e) => setNameSet(e.target.value)}
-          value={nameSet}
-        />
-        </InputGroup>
-        <Button onClick={() => setNameToSet()} >ввод</Button>
+      <div className="create-sets-container">
+        <div className="create-set">
+          <InputGroup className="mb-3">
+          <FormControl
+            placeholder="введите название сета"
+            onChange={(e) => setNameSet(e.target.value)}
+            value={nameSet}
+          />
+          </InputGroup>
+          <Button onClick={() => setNameToSet()} >ввод</Button>
+        </div>
       </div>
+      
     )
   }
 
   return ( 
-    <div style={styles.formContainer} >
-      <InputGroup className="mb-3">
-      <FormControl
-        placeholder="введите слово"
-        onChange={(e) => setUserWord(e.target.value)}
-        value={userWord}
-      />
-      </InputGroup>
+    <div className="create-sets-container">
+      <div className="create-word">
+        <InputGroup className="mb-3">
+        <FormControl
+          placeholder="введите слово"
+          onChange={(e) => setUserWord(e.target.value)}
+          value={userWord}
+        />
+        </InputGroup>
 
-      <InputGroup className="mb-3">
-      <FormControl
-        placeholder="введите перевод"
-        onChange={(e) => setwordTranslate(e.target.value)}
-        value={wordTranslate}
-      />
-      </InputGroup>
-      <InputGroup className="mb-3">
-      <FormControl
-        placeholder="введите фразу со словом"
-        onChange={(e) => setwordPhrase(e.target.value)}
-        value={phrase}
-      />
-      </InputGroup>
-      <div className="button-controls">
-        <Button onClick={() => addword()} >добавить слово</Button>
-          <Link 
-            onClick={() => saveSetwords()}
-            style={styles.link} 
-            className="save" 
-            to="/">
-              save
-          </Link>
+        <InputGroup className="mb-3">
+        <FormControl
+          placeholder="введите перевод"
+          onChange={(e) => setwordTranslate(e.target.value)}
+          value={wordTranslate}
+        />
+        </InputGroup>
+        <InputGroup className="mb-3">
+        <FormControl
+          placeholder="введите фразу со словом"
+          onChange={(e) => setwordPhrase(e.target.value)}
+          value={phrase}
+        />
+        </InputGroup>
+        <div className="button-controls">
+          <Button onClick={() => addword()} >добавить слово</Button>
+            <Link 
+              onClick={() => saveSetwords()}
+              className="save main-button" 
+              to="/">
+                save
+            </Link>
+        </div>
       </div>
     </div>
   );
