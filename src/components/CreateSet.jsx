@@ -27,8 +27,8 @@ const Createset = () => {
     let word = {
       id: Date.now(),
       category: nameSet,
-      word: userWord.trim(),
-      wordTranslate: wordTranslate.trim(),
+      word: userWord.trim().toLowerCase(),
+      wordTranslate: wordTranslate.trim().toLowerCase(),
       phrase: phrase,
       isTrueUserAnswer: false,
       userAnswer: ""
@@ -93,12 +93,17 @@ const Createset = () => {
         </InputGroup>
         <div className="button-controls">
           <Button onClick={() => addword()} >добавить слово</Button>
-            <Link 
-              onClick={() => saveSetwords()}
-              className="save main-button" 
-              to="/">
-                save
-            </Link>
+          {
+            words.length > 0 ?
+              <Link 
+                onClick={() => saveSetwords()}
+                className="save main-button" 
+                to="/">
+                  сохранить
+              </Link>
+              : null
+          }
+            
         </div>
       </div>
     </div>

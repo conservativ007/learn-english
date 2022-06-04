@@ -41,7 +41,7 @@ const TrueOrFalse = ({ card, index, lastCard = false }) => {
 
   return (
     <div ref={refContainer} className="choice-container">
-      <div className="chouse-question">
+      <div className="chouse-questions">
         <div className="choice-question_word">{card.wordTranslate}</div> 
         <HiOutlineArrowNarrowRight className="divider" />
         <div className="choice-question_word">

@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import { useParams } from 'react-router';
 import { addCustomClass } from '../../../hooks/addCustomClass';
 import { getCards } from '../../../hooks/getCards';

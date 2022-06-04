@@ -5,14 +5,47 @@
   align-items: center;
 }
 
+.swiper {
+  width: 500px;
+  height: 400px;
+  position: relative;
+}
+
+@media (max-width: 500px) {
+  .swiper {
+    width: 400px;
+  }
+}
+
+
 .flip-card {
-  margin-top: 50px;
-  width: 320px;
-  height: 200px;
+  position: absolute;
+  top: calc(50% - 135px);
+  left: calc(50% - 190px);
+  width: 380px;
+  height: 270px;
   font-size: 30px;
   perspective: 1000px;
 
   cursor: pointer;
+}
+
+@media (max-width: 440px) {
+  .swiper {
+    margin-top: 40px;
+    width: 320px;
+    height: 300px;
+  }
+
+  .flip-card {
+    width: 300px;
+    height: 200px;
+    left: calc(50% - 150px);
+  }
+
+  .swiper-pagination {
+    margin-bottom: 40px;
+  }
 }
 
 .flip-card-inner {
@@ -96,3 +129,10 @@
   color: #636e72;
   cursor: pointer;
 }
+
+/* .my-swiper {
+  width: 440px;
+  align-items: center;
+} */
+
+

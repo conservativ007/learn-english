@@ -132,6 +132,7 @@
   border: 5px dotted #b2bec3;
   border-radius: 5px;
   padding: 0 20px;
+  background-color: white;
 }
 
 @media (max-width: 767px) {

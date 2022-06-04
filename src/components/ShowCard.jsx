@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router';
-import { Button } from 'react-bootstrap';
 import { HiArrowNarrowLeft, HiArrowNarrowRight } from 'react-icons/hi';
 import { AiFillSound } from 'react-icons/ai';
 import "../styles/show-card.css";
 import Header from './Header';
 import Games from './games/Games';
 
+import "swiper/css";
+import "swiper/css/pagination";
+
 import { speech } from '../hooks/speech';
+import MySlider from './MySlider';
 
 const ShowCard = () => {
 
@@ -39,8 +42,10 @@ const ShowCard = () => {
   return (
     <>
       <Header />
+      <MySlider />
       <div className="cards-content">
-        <div className="cards-container">
+    
+        {/* <div className="cards-container">
           <div className="flip-card">
             <div onClick={isFlippedCardToggle} className="flip-card-inner">
               <div className="flip-card-front">
@@ -54,13 +59,13 @@ const ShowCard = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
-      <div className="cards-control">
+      {/* <div className="cards-control">
         <HiArrowNarrowLeft className="arrow" onClick={goToThePrevCard} />
         <div className="cards-counter">{counter + 1} / {cards.length}</div>
         <HiArrowNarrowRight className="arrow" onClick={goToTheNextCard} />
-      </div>
+      </div> */}
       <Games setName={name} />
     </>
   );

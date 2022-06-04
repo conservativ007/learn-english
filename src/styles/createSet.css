@@ -4,22 +4,9 @@
   width: 500px;
 }
 
-@media (max-width: 767px) {
-  .create-sets-container {
-    width: 400px;
-  }
-}
-
-@media (max-width: 450px) {
-  .create-sets-container {
-    width: 320px;
-  }
-}
-
 .create-set {
   width: 100%;
 }
-
 
 .button-controls {
   display: flex;

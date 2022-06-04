@@ -1,7 +1,13 @@
-.chouse-question {
+.chouse-questions {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+@media (max-width: 440px) {
+  .chouse-questions .choice-question_word {
+    font-size: 18px;
+  }
 }
 
 .divider {
