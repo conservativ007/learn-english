@@ -6,8 +6,9 @@
 }
 
 .swiper {
+  margin-top: 50px;
   width: 500px;
-  height: 400px;
+  height: 300px;
   position: relative;
 }
 
@@ -15,6 +16,13 @@
   .swiper {
     width: 400px;
   }
+}
+
+.slider-arrows {
+  width: 120px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 
@@ -129,10 +137,3 @@
   color: #636e72;
   cursor: pointer;
 }
-
-/* .my-swiper {
-  width: 440px;
-  align-items: center;
-} */
-
-
