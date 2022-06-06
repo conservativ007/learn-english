@@ -45,3 +45,49 @@
 .edit-button:hover {
   color: white;
 }
+
+/* change set name */
+
+.edit-setname {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.edit-setname_marker {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background-color: #636e72;
+  bottom: 0;
+}
+
+.set-name {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.edit-setname a {
+  margin-left: 20px;
+}
+
+.change-setname {
+  width: 500px;
+  margin: 50px auto;
+}
+
+.hide {
+  visibility: hidden;
+}
+
+.change-success-alert,
+.change-error-alert {
+  margin-top: 50px;
+  display: none;
+  /* visibility: hidden; */
+  transition: ease-in 1s;
+}
+
+
+

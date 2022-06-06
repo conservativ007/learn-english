@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import { Button, InputGroup, FormControl } from 'react-bootstrap';
+import React, { useRef, useState } from 'react';
+import { Button, InputGroup, FormControl, Alert } from 'react-bootstrap';
 import { saveToLocaleStorage } from '../hooks/saveToLocalStorage';
 import { Link, useParams } from 'react-router-dom';
 
 import "../styles/createSet.css";
+import { checkValidName } from '../hooks/changeNameSetToLocalStorage';
 
 const Createset = () => {
 
@@ -16,10 +17,17 @@ const Createset = () => {
   const [wordTranslate, setwordTranslate] = useState("");
   const [phrase, setwordPhrase] = useState("");
 
+  const refAlertError = useRef();
+
   const [words, setWords] = useState([]);
 
   function setNameToSet() {
     if(nameSet.length === 0) return;
+    if(checkValidName(nameSet) === true) {
+      refAlertError.current.style.display = "block";
+      setTimeout(() => refAlertError.current.style.display = "none", 2000);
+      return;
+    }
     setIsSet(true);
   } 
 
@@ -41,6 +49,9 @@ const Createset = () => {
   }
 
   function saveSetwords() {
+
+   
+
     if(params.set_name === "default") {
       saveToLocaleStorage(nameSet, words);
     } else {
@@ -60,6 +71,7 @@ const Createset = () => {
           />
           </InputGroup>
           <Button onClick={() => setNameToSet()} >ввод</Button>
+          <Alert ref={refAlertError} className="change-error-alert" variant="danger">такое имя уже существует выберете другое</Alert>
         </div>
       </div>
       

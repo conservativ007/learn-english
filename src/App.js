@@ -8,6 +8,7 @@ import Listening from './components/games/Listening';
 import Test from './components/games/Test';
 import ShowResults from './components/games/ShowResults';
 import Edit from './components/games/Edit';
+import EditSetName from './components/games/EditSetName';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
     { path: "test/:card_name", element: <Test /> },
     { path: "show-results", element: <ShowResults /> },
     { path: "edit/:card_name", element: <Edit /> },
+    { path: "/edit-setname/:set_name", element: <EditSetName /> },
   ]);
 
   return element;

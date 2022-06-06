@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { AiFillDelete } from 'react-icons/ai';
 import Header from '../Header';
 import { deleteSetFromLocalStorage, deleteWordFromLocalStorage } from '../../hooks/deleteFromLocalStorage';
+import { FormControl, Button } from 'react-bootstrap';
 
 const Edit = () => {
   const params = useParams();
@@ -30,6 +31,12 @@ const Edit = () => {
       <Header />
       <div className="game-container">
         <div className="edit">
+          <div className="edit-setname">
+            <div className="set-name">{params.card_name}</div>
+            <Link className="main-button" to={`/edit-setname/${params.card_name}`}>сменить название</Link>
+            <div className="edit-setname_marker"></div>
+          </div>
+          
           { 
             cards.map((card, index) => 
               <div key={index} className="edit-card">

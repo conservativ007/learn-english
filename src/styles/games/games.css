@@ -29,9 +29,11 @@
 .games-title {
   text-align: center;
   font-size: 20px;
+  color: #636e72;
 }
 
 .games-train {
+  margin-top: 20px;
   padding-left: 10px;
   display: flex;
   flex-direction: column;
@@ -41,6 +43,7 @@
 .games a {
   text-decoration: none;
   font-size: 20px;
+  padding-bottom: 5px;
 }
 
 
