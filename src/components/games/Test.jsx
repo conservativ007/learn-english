@@ -38,11 +38,37 @@ const Test = () => {
       return item.appendChild(div);
     });
 
-    window.scrollTo(0, 0);
+    document.querySelector("header").scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    })
     questionsDom.current.style.pointerEvents = "none";
 
     setEndGame(true);
   }
+
+  // плавная прокрутка
+  useEffect(() => {
+    let [...elems] = document.querySelectorAll(".choice-container");
+
+    elems.forEach((elem, index) => {
+      elem.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        if(elems[index + 1] === undefined) {
+          document.querySelector(".get-results").scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          })
+          return;
+        } 
+        elems[index + 1].scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        })
+      })
+    }) 
+  }, [])
 
   useEffect(() => {
     let elems = [...questionsDom.current.querySelectorAll(".choice-container")];
@@ -74,6 +100,7 @@ const Test = () => {
           <Button 
             onClick={() => getUserAnswers()} 
             style={{marginBottom: "50px"}}
+            className="get-results"
           >
             посмотреть результаты
           </Button> :

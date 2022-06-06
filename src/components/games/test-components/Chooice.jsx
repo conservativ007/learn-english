@@ -15,9 +15,9 @@ const Chooice = ({ card, lastCard = false}) => {
     addCustomClass(e, refAnswerContainer, "same-choice-answer", "active");
     addData(e, userAnswerId, trueId);
 
-    if(lastCard === false) {
-      window.scrollTo(0, refAnswerContainer.current.dataset.ofsety);
-    }
+    // if(lastCard === false) {
+    //   window.scrollTo(0, refAnswerContainer.current.dataset.ofsety);
+    // }
   }
 
   function addData(e, userAnswerId, trueId) {

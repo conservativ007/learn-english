@@ -1,4 +1,4 @@
-import React, {useRef, useState, useEffect} from 'react';
+import React, {useRef, useState } from 'react';
 import { useParams } from 'react-router';
 import { getCards } from '../../../hooks/getCards';
 import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
@@ -20,9 +20,9 @@ const TrueOrFalse = ({ card, index, lastCard = false }) => {
     e.target.setAttribute("data-user-trueID", trueId);
     e.target.setAttribute("data-user-answerID", isUserAnswerTrue === true ? trueId : 0);
 
-    if(lastCard === false) {
-      window.scrollTo(0, refContainer.current.dataset.ofsety);
-    }
+    // if(lastCard === false) {
+    //   window.scrollTo(0, refContainer.current.dataset.ofsety);
+    // }
   }
 
   function getIsUserAnswerTrue(bool, trueId, userAnswerId) {

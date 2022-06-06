@@ -28,9 +28,9 @@ const ListeningComponent = ({ card, lastCard = false }) => {
     e.target.setAttribute("data-user-trueID", card.id);
     e.target.setAttribute("data-user-answerID", isUserAnswerTrue === true ? card.id : 0);
     
-    if(lastCard === false) {
-      window.scrollTo(0, refContainer.current.dataset.ofsety);
-    }
+    // if(lastCard === false) {
+    //   window.scrollTo(0, refContainer.current.dataset.ofsety);
+    // }
   }
 
   // подсветить правильный ответ
