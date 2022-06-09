@@ -51,7 +51,7 @@ const TrueOrFalse = ({ card, index, lastCard = false }) => {
         </div>
       </div>
       <div className="choice-explain">Правда или ложь ?</div>
-      <div className="user-choice">
+      <div className="user-choice answers">
         <div onClick={(e) => prepare(e, card.id, cards[index].id, true)} className="user-chosen">true</div>
         <div onClick={(e) => prepare(e, card.id, cards[index].id, false)} className="user-chosen">false</div>
       </div>

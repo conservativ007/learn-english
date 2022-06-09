@@ -49,7 +49,7 @@ const Test = () => {
 
   // плавная прокрутка
   useEffect(() => {
-    let [...elems] = document.querySelectorAll(".choice-container");
+    let [...elems] = document.querySelectorAll(".answers");
 
     elems.forEach((elem, index) => {
       elem.addEventListener("click", (e) => {
@@ -64,7 +64,7 @@ const Test = () => {
         } 
         elems[index + 1].scrollIntoView({
           behavior: 'smooth',
-          block: 'start'
+          block: 'center'
         })
       })
     }) 

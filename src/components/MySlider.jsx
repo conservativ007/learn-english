@@ -17,10 +17,24 @@ const MySlider = () => {
   const name = params.card_name;
   const [cards] = useState(JSON.parse(localStorage.getItem(name)));
   const [indexSlide, setIndexSlide] = useState(0);
+  
+  let [counter, setCounter] = useState(1);
 
   function isFlippedCardToggle(e) {
     if(e.target.className === "flip-card-front" || e.target.className === "flip-card-back")
     e.currentTarget.classList.toggle("is-flipped");
+  }
+
+  // get slowly speech
+  function goSpeech(someText) {
+    speech(someText, false, counter);
+    setCounter(counter + 1);
+  }
+
+  function nextOrPrevSlide(action) {
+    if(action === "prev") swiperRef.current.slidePrev();
+    if(action === "next") swiperRef.current.slideNext();
+    setCounter(1);
   }
 
   if(cards) {
@@ -39,12 +53,12 @@ const MySlider = () => {
                   <div onClick={isFlippedCardToggle} className="flip-card-inner">
                     <div className="flip-card-front">
                       <div className="card-word">{item.word}</div>
-                      <AiFillSound onClick={() => speech(cards[indexSlide].word)} className="sound" />
+                      <AiFillSound onClick={() => goSpeech(cards[indexSlide].word)} className="sound" />
                     </div>
                   <div className="flip-card-back">
                     <div className="card-word_translate">{item.wordTranslate}</div>
                     <div className="card-word_phrase">{item.phrase}</div>
-                    <AiFillSound onClick={() => speech(cards[indexSlide].phrase)} className="sound" />
+                    <AiFillSound onClick={() => goSpeech(cards[indexSlide].phrase)} className="sound" />
                   </div>
                 </div>
               </div>
@@ -53,9 +67,9 @@ const MySlider = () => {
           }
         </Swiper>
         <div className="slider-arrows">
-          <HiArrowNarrowLeft className="arrow" onClick={() => swiperRef.current.slidePrev()} />
+          <HiArrowNarrowLeft className="arrow" onClick={() => nextOrPrevSlide("prev")} />
           <div>{indexSlide + 1} / {cards.length}</div>
-          <HiArrowNarrowRight className="arrow" onClick={() => swiperRef.current.slideNext()} />
+          <HiArrowNarrowRight className="arrow" onClick={() => nextOrPrevSlide("next")} />
         </div>
         </>
     );

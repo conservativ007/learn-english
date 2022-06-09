@@ -30,7 +30,7 @@ const Chooice = ({ card, lastCard = false}) => {
     <div ref={refAnswerContainer} className="choice-container">
       <div className="choice-question_word">{card.wordTranslate}</div>
       <div className="choice-explain">Выберите правильный термин</div>
-      <div  className="choice-answer-container">
+      <div  className="choice-answer-container answers">
         {
           cards.map((item, index) => {
             if(index >= 4) return null;
