@@ -58,7 +58,9 @@ const MySlider = () => {
                   <div className="flip-card-back">
                     <div className="card-word_translate">{item.wordTranslate}</div>
                     <div className="card-word_phrase">{item.phrase}</div>
-                    <AiFillSound onClick={() => goSpeech(cards[indexSlide].phrase)} className="sound" />
+                    {
+                      cards[indexSlide].phrase.length > 0 ? <AiFillSound onClick={() => goSpeech(cards[indexSlide].phrase)} className="sound" /> : null
+                    }
                   </div>
                 </div>
               </div>

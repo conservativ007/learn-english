@@ -5,8 +5,6 @@ export function speech(sound, timedelay = false, counter) {
   text.lang = "en-US";
   text.voice = voiceGirl;
 
-  console.log(counter)
-
   if(timedelay !== false) {
     let timerId = setTimeout(() => {
       speech.speak(text);

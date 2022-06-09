@@ -29,25 +29,27 @@ const Edit = () => {
   return (
     <>
       <Header />
-      <div className="game-container">
-        <div className="edit">
-          <div className="edit-setname">
-            <div className="set-name">{params.card_name}</div>
-            <Link className="main-button" to={`/edit-setname/${params.card_name}`}>сменить название</Link>
-            <div className="edit-setname_marker"></div>
+      <div className="main-container">
+        <div className="game-container">
+          <div className="edit">
+            <div className="edit-setname">
+              <div className="set-name">{params.card_name}</div>
+              <Link className="main-button" to={`/edit-setname/${params.card_name}`}>сменить название</Link>
+              <div className="edit-setname_marker"></div>
+            </div>
+            
+            { 
+              cards.map((card, index) => 
+                <div key={index} className="edit-card">
+                  <div className="edit-card_word">{card.word}</div>
+                  <div className="edit-card_word">{card.wordTranslate}</div>
+                  <AiFillDelete onClick={() => removeWord(card.id)} className="edit-delete"/>
+                </div>  
+              )
+            }
           </div>
-          
-          { 
-            cards.map((card, index) => 
-              <div key={index} className="edit-card">
-                <div className="edit-card_word">{card.word}</div>
-                <div className="edit-card_word">{card.wordTranslate}</div>
-                <AiFillDelete onClick={() => removeWord(card.id)} className="edit-delete"/>
-              </div>  
-            )
-          }
+          <Link className="edit-button main-button" to={`/create-set/${params.card_name}`}>добавить слово</Link>
         </div>
-        <Link className="edit-button main-button" to={`/create-set/${params.card_name}`}>добавить слово</Link>
       </div>
     </>
   );

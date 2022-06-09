@@ -1,12 +1,26 @@
 .create-sets-container {
+  width: 100%;
   margin: 20px auto;
   padding: 20px;
-  width: 500px;
 }
 
 .create-set {
   width: 100%;
 }
+
+.create-word_phrase-word {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.create-word_phrase-word input {
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+
 
 .button-controls {
   display: flex;

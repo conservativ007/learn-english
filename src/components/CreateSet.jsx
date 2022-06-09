@@ -17,6 +17,8 @@ const Createset = () => {
   const [wordTranslate, setwordTranslate] = useState("");
   const [phrase, setwordPhrase] = useState("");
 
+  const [addPhrase, setAddPhrase] = useState(false);
+
   const refAlertError = useRef();
 
   const [words, setWords] = useState([]);
@@ -61,61 +63,71 @@ const Createset = () => {
 
   if(isSet === false) {
     return (
-      <div className="create-sets-container">
-        <div className="create-set">
-          <InputGroup className="mb-3">
-          <FormControl
-            placeholder="введите название сета"
-            onChange={(e) => setNameSet(e.target.value)}
-            value={nameSet}
-          />
-          </InputGroup>
-          <Button onClick={() => setNameToSet()} >ввод</Button>
-          <Alert ref={refAlertError} className="change-error-alert" variant="danger">такое имя уже существует выберете другое</Alert>
+      <div className="main-container">
+        <div className="create-sets-container">
+          <div className="create-set">
+            <InputGroup className="mb-3">
+            <FormControl
+              placeholder="введите название сета"
+              onChange={(e) => setNameSet(e.target.value)}
+              value={nameSet}
+            />
+            </InputGroup>
+            <Button onClick={() => setNameToSet()} >ввод</Button>
+            <Alert ref={refAlertError} className="change-error-alert" variant="danger">такое имя уже существует выберете другое</Alert>
+          </div>
         </div>
       </div>
-      
     )
   }
 
   return ( 
-    <div className="create-sets-container">
-      <div className="create-word">
-        <InputGroup className="mb-3">
-        <FormControl
-          placeholder="введите слово"
-          onChange={(e) => setUserWord(e.target.value)}
-          value={userWord}
-        />
-        </InputGroup>
+    <div className="main-container">
+      <div className="create-sets-container">
+        <div className="create-word">
+          <InputGroup className="mb-3">
+          <FormControl
+            placeholder="введите слово"
+            onChange={(e) => setUserWord(e.target.value)}
+            value={userWord}
+          />
+          </InputGroup>
 
-        <InputGroup className="mb-3">
-        <FormControl
-          placeholder="введите перевод"
-          onChange={(e) => setwordTranslate(e.target.value)}
-          value={wordTranslate}
-        />
-        </InputGroup>
-        <InputGroup className="mb-3">
-        <FormControl
-          placeholder="введите фразу со словом"
-          onChange={(e) => setwordPhrase(e.target.value)}
-          value={phrase}
-        />
-        </InputGroup>
-        <div className="button-controls">
-          <Button onClick={() => addword()} >добавить слово</Button>
+          <InputGroup className="mb-3">
+          <FormControl
+            placeholder="введите перевод"
+            onChange={(e) => setwordTranslate(e.target.value)}
+            value={wordTranslate}
+          />
+          </InputGroup>
+          <div className="create-word_phrase-word">
+            <input type="checkbox" onChange={() => setAddPhrase(!addPhrase)} checked={addPhrase} />
+            <div onClick={() => setAddPhrase(!addPhrase)}>добавить фразу со словом на английском</div>
+          </div>
           {
-            words.length > 0 ?
-              <Link 
-                onClick={() => saveSetwords()}
-                className="save main-button" 
-                to="/">
-                  сохранить
-              </Link>
-              : null
+            addPhrase ? 
+            <InputGroup className="mb-3">
+              <FormControl
+                placeholder="введите фразу со словом"
+                onChange={(e) => setwordPhrase(e.target.value)}
+                value={phrase}
+              />
+            </InputGroup> : null
           }
-            
+          
+          <div className="button-controls">
+            <Button onClick={() => addword()} >добавить слово</Button>
+            {
+              words.length > 0 ?
+                <Link 
+                  onClick={() => saveSetwords()}
+                  className="save main-button" 
+                  to="/">
+                    сохранить
+                </Link>
+                : null
+            }
+          </div>
         </div>
       </div>
     </div>

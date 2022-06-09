@@ -81,6 +81,7 @@ const Test = () => {
   return (
     <>
       <Header />
+      <div className="main-container">
       <div className="game-container">
         <div ref={questionsDom} className="questions">
           {
@@ -112,6 +113,7 @@ const Test = () => {
             вернуться на главную
           </Link>
         }
+      </div>
       </div>
     </>
   );

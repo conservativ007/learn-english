@@ -19,6 +19,7 @@
 }
 
 .slider-arrows {
+  margin: 0 auto;
   width: 120px;
   display: flex;
   justify-content: space-between;
