@@ -52,33 +52,35 @@ const Listening = () => {
   if(endGame === true) return <ShowResults />
 
   return (
-    <div className="game-container"> 
-      <div className="listening_sound-container">
-        <div className="listening_sound-content">
-          <AiFillSound style={{cursor: "grab"}} className="listening-sound" onClick={() => speech(cards[counter].word)} />
-          {
-            counter === 0 ? 
-            <div className="container-marker-hint">
-              <AiOutlineArrowLeft className="marker-hint" />
-              <div className="hint">нажмите здесь для воспроизведения</div>
-            </div> 
-            :
-            null
-          }
-        </div>
-        
-        <div className="user-answer">
-          <FormControl
-            placeholder="введите что слышите"
-            value={userAnswer}
-            onChange={e => setUserAnswer(e.target.value)}
-          />
-          <div ref={marker} className="marker"></div>
-          <div ref={DOMElemTrueAnswer} className="spelling-true-answer"></div>
-        </div>
-        <div className="check-answer">
-          <Button className="answer-button" onClick={() => testFuncCheckAnswer(true)}>Ответ</Button>
-          <Button onClick={() => testFuncCheckAnswer(false)}>не знаю</Button>
+    <div className="main-container">
+      <div className="game-container"> 
+        <div className="listening_sound-container">
+          <div className="listening_sound-content">
+            <AiFillSound style={{cursor: "grab"}} className="listening-sound" onClick={() => speech(cards[counter].word)} />
+            {
+              counter === 0 ? 
+              <div className="container-marker-hint">
+                <AiOutlineArrowLeft className="marker-hint" />
+                <div className="hint">нажмите здесь для воспроизведения</div>
+              </div> 
+              :
+              null
+            }
+          </div>
+          
+          <div className="user-answer">
+            <FormControl
+              placeholder="введите что слышите"
+              value={userAnswer}
+              onChange={e => setUserAnswer(e.target.value)}
+            />
+            <div ref={marker} className="marker"></div>
+            <div ref={DOMElemTrueAnswer} className="spelling-true-answer"></div>
+          </div>
+          <div className="check-answer">
+            <Button className="answer-button" onClick={() => testFuncCheckAnswer(true)}>Ответ</Button>
+            <Button onClick={() => testFuncCheckAnswer(false)}>не знаю</Button>
+          </div>
         </div>
       </div>
     </div>

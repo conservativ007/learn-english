@@ -46,20 +46,22 @@ const Spelling = () => {
   if(endGame === true) return <ShowResults />
   
   return (
-    <div className="game-container">
-      <div className="word-translate">{cards[counter].wordTranslate}</div>
-      <div className="user-answer">
-        <FormControl
-          placeholder="введите перевод на английском"
-          value={inputAnswer}
-          onChange={e => setInputAnswer(e.target.value)}
-        />
-        <div ref={marker} className="marker"></div>
-        <div ref={DOMElemTrueAnswer} className="spelling-true-answer"></div>
-      </div>
-      <div className="check-answer">
-        <Button className="answer-button" onClick={() => testCheckAnswer(true)}>Ответ</Button>
-        <Button onClick={() => testCheckAnswer(false)} >не знаю</Button>
+    <div className="main-container">
+      <div className="game-container">
+        <div className="word-translate">{cards[counter].wordTranslate}</div>
+        <div className="user-answer">
+          <FormControl
+            placeholder="введите перевод на английском"
+            value={inputAnswer}
+            onChange={e => setInputAnswer(e.target.value)}
+          />
+          <div ref={marker} className="marker"></div>
+          <div ref={DOMElemTrueAnswer} className="spelling-true-answer"></div>
+        </div>
+        <div className="check-answer">
+          <Button className="answer-button" onClick={() => testCheckAnswer(true)}>Ответ</Button>
+          <Button onClick={() => testCheckAnswer(false)} >не знаю</Button>
+        </div>
       </div>
     </div>
   );

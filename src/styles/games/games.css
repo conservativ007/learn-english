@@ -97,7 +97,6 @@
   grid-template-columns: repeat(2, 1fr);
 }
 
-
 @media (max-width: 440px) {
   .choice-answer-container {
     grid-template-columns: repeat(1, 1fr);
@@ -107,6 +106,7 @@
 
 .questions {
   width: 100%;
+  scroll-behavior: smooth;
 }
 
 .same-choice-answer {

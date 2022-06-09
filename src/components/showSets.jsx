@@ -2,8 +2,10 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setNameAction } from '../store/setNameReducer';
-import "../styles/showSets.css";
 
+import "../styles/showSets.css";
+import "../styles/video.css";
+import video from "../assets/video1.mkv";
 
 const Showsets = () => {
   
@@ -13,9 +15,14 @@ const Showsets = () => {
 
   if(!sets) {
     return (
-      <div className="set-container">
-        <h2>У вас ещё нету подборки создайте первую :)</h2>
-        <Link className="set-link" to={`/create-set/${"default"}`}>создать первую подборку</Link>
+      <div className="main-container">
+        <div className="set-container">
+          <h2>У вас ещё нету подборки создайте первую :)</h2>
+          <Link className="set-link" to={`/create-set/${"default"}`}>создать первую подборку</Link>
+        </div>
+        <div className="video-container">
+          <video className="video" controls src={video}></video>
+        </div>
       </div>
     )
   }

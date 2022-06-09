@@ -10,32 +10,33 @@ const ShowResults = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="results">
-      <h2>результаты</h2>
-      {
-        results.userAnswer.map((item, index) => 
-          <div key={index} className='res_answers'>
-            <div>вопрос: {item.question}</div>
-            <div>правильный ответ: {item.trueAnswer}</div>
-            <div>вы ответили: {item.userAnswer}</div>
-            <div className="answer-marker" style={{backgroundColor: item.isTrueAnswer ? "#00b894" : "#d63031"}}></div>
-            {item.isTrueAnswer ? <div className='res-true_answer'>&#10003;</div> : <div className='res-false_answer'>&#10007;</div>}
-          </div>
-        )
-      }
-      <div className="counter-answers">
-        <div>правильных ответов: {results.correctAnswerCounter}</div>
-        <div>неправильных ответов: {results.incorrectAnswerCounter}</div>
+    <div className="main-container">
+      <div className="results">
+        <h2>результаты</h2>
+        {
+          results.userAnswer.map((item, index) => 
+            <div key={index} className='res_answers'>
+              <div>вопрос: {item.question}</div>
+              <div>правильный ответ: {item.trueAnswer}</div>
+              <div>вы ответили: {item.userAnswer}</div>
+              <div className="answer-marker" style={{backgroundColor: item.isTrueAnswer ? "#00b894" : "#d63031"}}></div>
+              {item.isTrueAnswer ? <div className='res-true_answer'>&#10003;</div> : <div className='res-false_answer'>&#10007;</div>}
+            </div>
+          )
+        }
+        <div className="counter-answers">
+          <div>правильных ответов: {results.correctAnswerCounter}</div>
+          <div>неправильных ответов: {results.incorrectAnswerCounter}</div>
+        </div>
+        <Link 
+        onClick={() => dispatch(zeroingAction())} 
+        className="button-link main-button" 
+        to="/"
+        >
+          на главную
+        </Link>
       </div>
-      <Link 
-      onClick={() => dispatch(zeroingAction())} 
-      className="button-link main-button" 
-      to="/"
-      >
-        на главную
-      </Link>
     </div>
-    
   )
 }
 

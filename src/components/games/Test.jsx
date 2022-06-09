@@ -69,14 +69,6 @@ const Test = () => {
       })
     }) 
   }, [])
-
-  useEffect(() => {
-    let elems = [...questionsDom.current.querySelectorAll(".choice-container")];
-
-    for(let i = 0; i < elems.length - 1; i += 1) {
-      elems[i].setAttribute("data-ofsety", elems[i + 1].getBoundingClientRect().y);
-    }
-  }, []);
   
   return (
     <>

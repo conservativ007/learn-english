@@ -51,9 +51,6 @@ const Createset = () => {
   }
 
   function saveSetwords() {
-
-   
-
     if(params.set_name === "default") {
       saveToLocaleStorage(nameSet, words);
     } else {

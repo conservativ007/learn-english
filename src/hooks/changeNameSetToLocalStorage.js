@@ -22,6 +22,7 @@ function changeName(oldName, newName) {
 
 export function checkValidName(newName) {
   let setNames = JSON.parse(localStorage.getItem("LEARN_ENGLISH"));
+  if(setNames === null) return false;
   let bool = setNames.includes(newName);
   return bool;
 }
