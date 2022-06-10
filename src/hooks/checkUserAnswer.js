@@ -17,6 +17,9 @@ export function checkUserAnswer(
     setFalseAnswer(DOMElemTrueAnswer, trueAnswer, setInputAnswer, trueAnswer)
   } 
 
+  trueAnswer = trueAnswer.toLowerCase();
+  userAnswer = userAnswer.toLowerCase();
+
   if(trueAnswer === userAnswer) {
     marker.current.classList.add("green");
     dispatch(correctAction());

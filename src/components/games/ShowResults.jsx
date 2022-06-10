@@ -16,9 +16,9 @@ const ShowResults = () => {
         {
           results.userAnswer.map((item, index) => 
             <div key={index} className='res_answers'>
-              <div>вопрос: {item.question}</div>
-              <div>правильный ответ: {item.trueAnswer}</div>
-              <div>вы ответили: {item.userAnswer}</div>
+              <div>вопрос: {item.question.toLowerCase()}</div>
+              <div>правильный ответ: {item.trueAnswer.toLowerCase()}</div>
+              <div>вы ответили: {item.userAnswer.toLowerCase()}</div>
               <div className="answer-marker" style={{backgroundColor: item.isTrueAnswer ? "#00b894" : "#d63031"}}></div>
               {item.isTrueAnswer ? <div className='res-true_answer'>&#10003;</div> : <div className='res-false_answer'>&#10007;</div>}
             </div>

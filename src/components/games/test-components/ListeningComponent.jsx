@@ -5,7 +5,7 @@ import { BiArrowBack } from 'react-icons/bi';
 import { speech } from '../../../hooks/speech';
 import "../../../styles/games/test-components/listening-component.css";
 
-const ListeningComponent = ({ card, lastCard = false }) => {
+const ListeningComponent = ({ card }) => {
 
   const [userAnswer, setUserAnswer] = useState("");
   const refContainer = useRef(null);
@@ -17,8 +17,8 @@ const ListeningComponent = ({ card, lastCard = false }) => {
 
   function checkUserAnswer(e) {
     let isUserAnswerTrue = false;
-    let testOne = String(userAnswer.trim());
-    let testTwo = String(card.wordTranslate);
+    let testOne = String(userAnswer.trim()).toLowerCase();
+    let testTwo = String(card.wordTranslate).toLowerCase();
 
     if(testOne === testTwo) {
       isUserAnswerTrue = true;
@@ -27,18 +27,14 @@ const ListeningComponent = ({ card, lastCard = false }) => {
     e.target.classList.add("active");
     e.target.setAttribute("data-user-trueID", card.id);
     e.target.setAttribute("data-user-answerID", isUserAnswerTrue === true ? card.id : 0);
-    
-    // if(lastCard === false) {
-    //   window.scrollTo(0, refContainer.current.dataset.ofsety);
-    // }
   }
 
   // подсветить правильный ответ
   useEffect(() => {
     if(userAnswer.length < 4) return;
     let tryAnswer = String(card.wordTranslate);
-    let test = tryAnswer.length * 0.70;
-    if(tryAnswer.includes(userAnswer) && userAnswer.length >= test) {
+    let test = tryAnswer.length * 0.60;
+    if(tryAnswer.includes(userAnswer.toLowerCase()) && userAnswer.length >= test) {
       refAnswerHelp.current.style.visibility = "visible";
       refAnswerHelp.current.style.opacity = 0.5;
     } 
