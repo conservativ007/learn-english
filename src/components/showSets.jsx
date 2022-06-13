@@ -9,7 +9,7 @@ import video from "../assets/video1.mkv";
 
 const Showsets = () => {
   
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   let backgrounds = ["#ff7675", "#fab1a0", "#55efc4", "#81ecec", "#ff9ff3", "#feca57", "#ff6b6b", "#1dd1a1"];
   let sets = JSON.parse(localStorage.getItem("LEARN_ENGLISH"));
 
@@ -42,7 +42,7 @@ const Showsets = () => {
                 className="set"
               >
                 <Link 
-                onClick={() => dispatch(setNameAction(item))} 
+                // onClick={() => dispatch(setNameAction(item))} 
                 className="link" 
                 to={`/show-card/${item}`}>{item}</Link>
               </div>

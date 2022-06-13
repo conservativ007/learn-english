@@ -6,9 +6,8 @@ const Header = () => {
   return (
     <header>
       <Link to="/">main</Link>
-      <Link to={`/create-set/${"default"}`}>create set</Link>
+      <Link to={`/create-set/${"default"}`}>создать подборку</Link>
     </header>
   );
 }
-// to={`/show-card/${item}`}>{item}</Link>
 export default Header;

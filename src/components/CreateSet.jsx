@@ -1,130 +1,97 @@
 import React, { useRef, useState } from 'react';
-import { Button, InputGroup, FormControl, Alert } from 'react-bootstrap';
+
 import { saveToLocaleStorage } from '../hooks/saveToLocalStorage';
-import { Link, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+import { Alert } from 'react-bootstrap';
+import Button from '@mui/material/Button';
+
+import CreateWord from './CreateWord';
+import CreateSetName from './CreateSetName';
+import { checkValidName } from '../hooks/changeNameSetToLocalStorage';
 
 import "../styles/createSet.css";
-import { checkValidName } from '../hooks/changeNameSetToLocalStorage';
 
 const Createset = () => {
 
   const params = useParams();
+  const navigate = useNavigate();
 
-  const [nameSet, setNameSet] = useState(params.set_name === "default" ? "" : params.set_name );
-  const [isSet, setIsSet] = useState(params.set_name === "default" ? false : true);
+  const [counter, setCounter] = useState(2);
 
-  const [userWord, setUserWord] = useState("");
-  const [wordTranslate, setwordTranslate] = useState("");
-  const [phrase, setwordPhrase] = useState("");
-
-  const [addPhrase, setAddPhrase] = useState(false);
-
+  let words = useSelector(state => state.wordsReducer);
+  let nameSet = useSelector(state => state.setNameReducer);
+  
+  const refUserWords = useRef();
   const refAlertError = useRef();
 
-  const [words, setWords] = useState([]);
-
-  function setNameToSet() {
-    if(nameSet.length === 0) return;
-    if(checkValidName(nameSet) === true) {
-      refAlertError.current.style.display = "block";
-      setTimeout(() => refAlertError.current.style.display = "none", 2000);
-      return;
-    }
-    setIsSet(true);
-  } 
-
-  function addword() { 
-    let word = {
-      id: Date.now(),
-      category: nameSet,
-      word: userWord.trim().toLowerCase(),
-      wordTranslate: wordTranslate.trim().toLowerCase(),
-      phrase: phrase,
-      isTrueUserAnswer: false,
-      userAnswer: ""
-    }
-
-    setWords([...words, word]);
-    setUserWord("");
-    setwordTranslate("");
-    setwordPhrase("");
-  }
-
-  function saveSetwords() {
+  function saveSetwords(someWords) {
     if(params.set_name === "default") {
-      saveToLocaleStorage(nameSet, words);
+      saveToLocaleStorage(nameSet, someWords);
     } else {
-      saveToLocaleStorage(nameSet, words, "add");
+      saveToLocaleStorage(nameSet, someWords, "add");
     }
   }
 
-  if(isSet === false) {
-    return (
-      <div className="main-container">
-        <div className="create-sets-container">
-          <div className="create-set">
-            <InputGroup className="mb-3">
-            <FormControl
-              placeholder="введите название сета"
-              onChange={(e) => setNameSet(e.target.value)}
-              value={nameSet}
-            />
-            </InputGroup>
-            <Button onClick={() => setNameToSet()} >ввод</Button>
-            <Alert ref={refAlertError} className="change-error-alert" variant="danger">такое имя уже существует выберете другое</Alert>
-          </div>
-        </div>
-      </div>
-    )
+  function saveWordsToLocaleStorage() {
+    if(nameSet.length === 0) {
+      return showAlert("ввидете название подборки");
+    } 
+
+    if(nameSet.length > 0 && checkValidName(nameSet) === true) {
+      return showAlert("такое имя уже существует выберите другое");
+    }
+
+    let someWords = getCorrectWords();
+
+    if(someWords.length === 0) {
+      return showAlert("заполните хотябы одну карточку");
+    }
+
+    saveSetwords(someWords);
+    navigate("/");
+  }
+
+  function showAlert(text) {
+    refAlertError.current.style.display = "block";
+    refAlertError.current.innerHTML = text;
+    setTimeout(() => refAlertError.current.style.display = "none", 2000);
+  }
+
+  function getCorrectWords() {
+    return words.filter(item => {
+      if(item.word !== "" && item.translate !== "") {
+        return {
+          id: item.id,
+          word: item.word,
+          translate: item.translate,
+          phrase: item.phrase,
+        }
+      } 
+      return null;
+    })
   }
 
   return ( 
-    <div className="main-container">
+    <div className="main-container" ref={refUserWords}>
       <div className="create-sets-container">
-        <div className="create-word">
-          <InputGroup className="mb-3">
-          <FormControl
-            placeholder="введите слово"
-            onChange={(e) => setUserWord(e.target.value)}
-            value={userWord}
-          />
-          </InputGroup>
-
-          <InputGroup className="mb-3">
-          <FormControl
-            placeholder="введите перевод"
-            onChange={(e) => setwordTranslate(e.target.value)}
-            value={wordTranslate}
-          />
-          </InputGroup>
-          <div className="create-word_phrase-word">
-            <input type="checkbox" onChange={() => setAddPhrase(!addPhrase)} checked={addPhrase} />
-            <div onClick={() => setAddPhrase(!addPhrase)}>добавить фразу со словом на английском</div>
-          </div>
-          {
-            addPhrase ? 
-            <InputGroup className="mb-3">
-              <FormControl
-                placeholder="введите фразу со словом"
-                onChange={(e) => setwordPhrase(e.target.value)}
-                value={phrase}
-              />
-            </InputGroup> : null
-          }
-          
-          <div className="button-controls">
-            <Button onClick={() => addword()} >добавить слово</Button>
-            {
-              words.length > 0 ?
-                <Link 
-                  onClick={() => saveSetwords()}
-                  className="save main-button" 
-                  to="/">
-                    сохранить
-                </Link>
-                : null
-            }
-          </div>
+        <div className="create-set">
+          <CreateSetName />
+          <Alert ref={refAlertError} className="change-error-alert" variant="danger"></Alert>
+        </div>
+        {
+          [...Array(counter)].map((_, index) => {
+            return <CreateWord 
+              key={index} 
+              index={index} 
+              lastCard={index + 1 === counter ? "last" : undefined} 
+              setCounter={setCounter} 
+            />
+          })
+        }
+        <div className="button-controls">
+          <Button style={{marginTop: "20px"}} variant="contained" onClick={() => saveWordsToLocaleStorage()}>сохранить</Button>
         </div>
       </div>
     </div>
