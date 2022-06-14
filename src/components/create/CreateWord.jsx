@@ -27,7 +27,9 @@ const CreateWord = ({index, lastCard, setCounter}) => {
       id: index,
       word: userWord.trim().toLowerCase(),
       translate: userWordTranslate.trim().toLowerCase(),
-      phrase: userPhrase
+      phrase: userPhrase,
+      isTrueUserAnswer: false,
+      userAnswer: ""
     }
 
     dispatch(addWordsAction(testObj))

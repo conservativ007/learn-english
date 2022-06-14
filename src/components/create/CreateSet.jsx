@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 
-import { saveToLocaleStorage } from '../../hooks/saveToLocalStorage';
+import { saveToLocaleStorage } from '../../functions/saveToLocalStorage';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -10,7 +10,7 @@ import AlertMU from '@mui/material/Alert';
 
 import CreateWord from './CreateWord';
 import CreateSetName from './CreateSetName';
-import { checkValidName } from '../../hooks/changeNameSetToLocalStorage';
+import { checkValidName } from '../../functions/changeNameSetToLocalStorage';
 
 import "../../styles/createSet.css";
 

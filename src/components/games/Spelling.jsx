@@ -5,7 +5,7 @@ import { useParams } from 'react-router';
 import ShowResults from './ShowResults';
 
 import "../../styles/games/spelling.css"
-import { checkUserAnswer } from '../../hooks/checkUserAnswer';
+import { checkUserAnswer } from '../../functions/checkUserAnswer';
 
 const Spelling = () => {
 
@@ -25,7 +25,7 @@ const Spelling = () => {
   function testCheckAnswer(bool = false) {
     checkUserAnswer(
       cards[counter].word, 
-      cards[counter].wordTranslate,
+      cards[counter].translate,
       inputAnswer, 
       marker, 
       DOMElemTrueAnswer,
@@ -48,7 +48,7 @@ const Spelling = () => {
   return (
     <div className="main-container">
       <div className="game-container">
-        <div className="word-translate">{cards[counter].wordTranslate}</div>
+        <div className="word-translate">{cards[counter].translate}</div>
         <div className="user-answer">
           <FormControl
             placeholder="введите перевод на английском"

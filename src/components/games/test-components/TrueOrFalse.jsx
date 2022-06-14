@@ -1,10 +1,10 @@
 import React, {useRef, useState } from 'react';
 import { useParams } from 'react-router';
-import { getCards } from '../../../hooks/getCards';
+import { getCards } from '../../../functions/getCards';
 import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
 
 import "../../../styles/games/test-components/true-or-false.css";
-import { addCustomClass } from '../../../hooks/addCustomClass';
+import { addCustomClass } from '../../../functions/addCustomClass';
 
 const TrueOrFalse = ({ card, index, lastCard = false }) => {
 
@@ -42,7 +42,7 @@ const TrueOrFalse = ({ card, index, lastCard = false }) => {
   return (
     <div ref={refContainer} className="choice-container">
       <div className="chouse-questions">
-        <div className="choice-question_word">{card.wordTranslate}</div> 
+        <div className="choice-question_word">{card.translate}</div> 
         <HiOutlineArrowNarrowRight className="divider" />
         <div className="choice-question_word">
               {

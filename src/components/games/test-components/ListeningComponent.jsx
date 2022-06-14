@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { FormControl, Button } from 'react-bootstrap';
 import { AiFillSound } from 'react-icons/ai';
 import { BiArrowBack } from 'react-icons/bi';
-import { speech } from '../../../hooks/speech';
+import { speech } from '../../../functions/speech';
 import "../../../styles/games/test-components/listening-component.css";
 
 const ListeningComponent = ({ card }) => {
@@ -18,7 +18,7 @@ const ListeningComponent = ({ card }) => {
   function checkUserAnswer(e) {
     let isUserAnswerTrue = false;
     let testOne = String(userAnswer.trim()).toLowerCase();
-    let testTwo = String(card.wordTranslate).toLowerCase();
+    let testTwo = String(card.translate).toLowerCase();
 
     if(testOne === testTwo) {
       isUserAnswerTrue = true;
@@ -32,7 +32,7 @@ const ListeningComponent = ({ card }) => {
   // подсветить правильный ответ
   useEffect(() => {
     if(userAnswer.length < 4) return;
-    let tryAnswer = String(card.wordTranslate);
+    let tryAnswer = String(card.translate);
     let test = tryAnswer.length * 0.60;
     if(tryAnswer.includes(userAnswer.toLowerCase()) && userAnswer.length >= test) {
       refAnswerHelp.current.style.visibility = "visible";
@@ -54,7 +54,7 @@ const ListeningComponent = ({ card }) => {
           onChange={e => setUserAnswer(e.target.value)}
         />
         <Button className="answers" onClick={e => checkUserAnswer(e)} >далее</Button>
-        <div ref={refAnswerHelp} className="answer-help">{card.wordTranslate}</div>
+        <div ref={refAnswerHelp} className="answer-help">{card.translate}</div>
       </div>
       
     </div>

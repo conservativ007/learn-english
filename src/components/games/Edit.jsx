@@ -4,8 +4,7 @@ import "../../styles/games/edit.css";
 import { Link } from 'react-router-dom';
 import { AiFillDelete } from 'react-icons/ai';
 import Header from '../Header';
-import { deleteSetFromLocalStorage, deleteWordFromLocalStorage } from '../../hooks/deleteFromLocalStorage';
-import { FormControl, Button } from 'react-bootstrap';
+import { deleteSetFromLocalStorage, deleteWordFromLocalStorage } from '../../functions/deleteFromLocalStorage';
 
 const Edit = () => {
   const params = useParams();
@@ -42,7 +41,7 @@ const Edit = () => {
               cards.map((card, index) => 
                 <div key={index} className="edit-card">
                   <div className="edit-card_word">{card.word}</div>
-                  <div className="edit-card_word">{card.wordTranslate}</div>
+                  <div className="edit-card_word">{card.translate}</div>
                   <AiFillDelete onClick={() => removeWord(card.id)} className="edit-delete"/>
                 </div>  
               )
