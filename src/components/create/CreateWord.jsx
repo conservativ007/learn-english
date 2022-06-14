@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { useDispatch } from 'react-redux';
-import { addWordsAction } from '../store/wordsReducer';
+import { addWordsAction } from '../../store/wordsReducer';
 
 const CreateWord = ({index, lastCard, setCounter}) => {
 

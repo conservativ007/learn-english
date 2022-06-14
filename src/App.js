@@ -1,7 +1,7 @@
 import './App.css';
 import { useRoutes } from "react-router-dom";
 import Home from './components/Home';
-import Createset from './components/CreateSet';
+import Createset from './components/create/CreateSet';
 import ShowCard from './components/ShowCard';
 import Spelling from './components/games/Spelling';
 import Listening from './components/games/Listening';

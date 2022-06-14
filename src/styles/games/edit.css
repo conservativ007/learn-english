@@ -73,9 +73,14 @@
 }
 
 .change-setname {
+  position: relative;
   width: 500px;
-  padding: 0 20px;
-  margin: 50px auto;
+  padding: 100px 20px;
+  margin: 20px auto;
+}
+
+.change-setname__input {
+  margin-top: 20px;
 }
 
 @media (max-width: 360px) {
@@ -88,11 +93,11 @@
   visibility: hidden;
 }
 
-.change-success-alert,
-.change-error-alert {
-  margin-top: 50px;
-  display: none;
-  /* visibility: hidden; */
+.change-setname__alert-success,
+.change-setname__alert-error {
+  position: absolute;
+  top: 0;
+  visibility: hidden;
   transition: ease-in 1s;
 }
 

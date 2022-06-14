@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import TextField from '@mui/material/TextField';
 import { useParams } from 'react-router-dom';
 
-import { setNameAction } from '../store/setNameReducer';
+import { setNameAction } from '../../store/setNameReducer';
 import { useDispatch } from 'react-redux';
 
 

@@ -1,7 +1,13 @@
 import React, {useRef, useState} from 'react';
 import { changeNameSetToLocalStorage } from '../../hooks/changeNameSetToLocalStorage';
-import { FormControl, Button, Alert } from 'react-bootstrap';
+// import { Alert } from 'react-bootstrap';
 import {useParams, useNavigate} from "react-router";
+
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
+
+import "../../styles/games/edit.css";
 
 
 const EditSetName = () => {
@@ -16,28 +22,32 @@ const EditSetName = () => {
     let isChangeSet = changeNameSetToLocalStorage(params.set_name, nameSet);
 
     if(isChangeSet === true) {
-      refAlertSuccess.current.style.display = "block";
+      refAlertSuccess.current.style.visibility = "visible";
       
       setTimeout(() => {
         navigate("/");
       }, 2000);
 
     } else {
-      refAlertError.current.style.display = "block";
-
+      refAlertError.current.style.visibility = "visible";
       setTimeout(() => {
-        refAlertError.current.style.display = "none";
+        refAlertError.current.style.visibility = "hidden";
       }, 2000);
     }
-    console.log(isChangeSet)
   }
 
   return (
     <div className="change-setname">
-      <FormControl value={nameSet} onChange={(e) => setNameSet(e.target.value)} />
-      <Button style={{marginTop: "10px"}} onClick={testFunc}>сохранить</Button>
-      <Alert ref={refAlertSuccess} className="change-success-alert" variant="success">изменения упешно сохранены, вы будете перенаправлены на главную страницу через нескольо секунд</Alert>
-      <Alert ref={refAlertError} className="change-error-alert" variant="danger">такое имя уже существует выберете другое</Alert>
+      <Alert severity="success" ref={refAlertSuccess} className="change-setname__alert-success">изменения успешно сохранены вы будете перенаправлены на главную страницу через несколько секунд</Alert>
+      <Alert severity="error" ref={refAlertError} className="change-setname__alert-error">такое имя уже существует, выберете другое</Alert>
+      <TextField 
+        className="max-width change-setname__input" 
+        id="outlined-basic5" 
+        variant="standard" 
+        onChange={(e) => setNameSet(e.target.value)}
+        value={nameSet}
+      />
+      <Button style={{marginTop: "20px"}} variant="contained" onClick={() => testFunc()}>сохранить</Button>
     </div>
   );
 }

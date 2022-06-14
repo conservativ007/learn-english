@@ -12,8 +12,17 @@ export function saveToLocaleStorage(setName, array, action = false) {
 
 function add(setName, newWords) {
   let oldArr = JSON.parse(localStorage.getItem(setName));
+
+  // change id word ( get unique id ) 
+  let getCorrectWords = [...newWords, ...oldArr].map((item, index) => {
+    return {
+      ...item,
+      id: index
+    }
+  })
+
   localStorage.removeItem(setName);
-  localStorage.setItem(setName, JSON.stringify([...newWords, ...oldArr]));
+  localStorage.setItem(setName, JSON.stringify([...getCorrectWords]));
 }
 
 function save(setName, array) {
