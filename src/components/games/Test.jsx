@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import Chooice from './test-components/Chooice';
-import { getCards } from '../../hooks/getCards';
+import { getCards } from '../../functions/getCards';
 import TrueOrFalse from './test-components/TrueOrFalse';
 import ListeningComponent from './test-components/ListeningComponent';
 import Header from '../Header';

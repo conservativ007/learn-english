@@ -6,8 +6,8 @@ import { useDispatch } from "react-redux";
 import { AiFillSound } from 'react-icons/ai';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { Button, FormControl } from 'react-bootstrap';
-import { speech } from '../../hooks/speech';
-import { checkUserAnswer } from "../../hooks/checkUserAnswer";
+import { speech } from '../../functions/speech';
+import { checkUserAnswer } from "../../functions/checkUserAnswer";
 import ShowResults from './ShowResults';
 
 import "../../styles/games/listening.css";

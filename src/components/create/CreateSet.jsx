@@ -4,15 +4,14 @@ import { saveToLocaleStorage } from '../../functions/saveToLocalStorage';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import Alert from 'react-bootstrap/Alert';
 import Button from '@mui/material/Button';
-import AlertMU from '@mui/material/Alert';
 
 import CreateWord from './CreateWord';
 import CreateSetName from './CreateSetName';
 import { checkValidName } from '../../functions/changeNameSetToLocalStorage';
 
-import "../../styles/createSet.css";
+import MuAlert from '../alerts/MuAlert';
+import { showAlert } from '../alerts/showAlert';
 
 const Createset = () => {
 
@@ -24,50 +23,32 @@ const Createset = () => {
   let words = useSelector(state => state.wordsReducer);
   let nameSet = useSelector(state => state.setNameReducer);
   
-  const refAlertSuccess = useRef();
-  const refAlertError = useRef();
+  const muAlertRef = useRef();
 
-
-  function prepareToSave() {
+  function checkMistakesAndSave() {
     let someWords = getCorrectWords();
 
-    if(params.set_name === "default") {
-      return checkMistakesAndSave(someWords);
-    }
-
-    if(someWords.length === 0) {
-      return showAlert(refAlertError, "заполните хотябы одну карточку");
-    }
-
-    showAlert(refAlertSuccess);
-    saveToLocaleStorage(params.set_name, someWords, "add");
-
-    setTimeout(() => navigate(`/show-card/${params.set_name}`), 2000);
-  }
-
-  function checkMistakesAndSave(someWords) {
     if(nameSet.length === 0) {
-      return showAlert(refAlertError, "введите название подборки");
+      return showAlert(muAlertRef, "введите название подборки", false);
     } 
 
-    if(nameSet.length > 0 && checkValidName(nameSet) === true) {
-      return showAlert(refAlertError, "такое имя уже существует выберите другое");
+    if(nameSet.length > 0 && checkValidName(nameSet) === true && params.set_name === "default") {
+      return showAlert(muAlertRef, "такое имя уже существует выберите другое", false);
     }
 
     if(someWords.length === 0) {
-      return showAlert(refAlertError, "заполните хотябы одну карточку");
+      return showAlert(muAlertRef, "заполните хотябы одну карточку", false);
     }
 
-    saveToLocaleStorage(nameSet, someWords);
-    showAlert(refAlertSuccess);
-    setTimeout(() => navigate(`/show-card/${nameSet}`), 2000);
-  }
-
-
-  function showAlert(ref, text = false) {
-    ref.current.style.display = "block";
-    if(text !== false) ref.current.innerHTML = text;
-    setTimeout(() => ref.current.style.display = "none", 2000);
+    if(params.set_name === "default") {
+      saveToLocaleStorage(nameSet, someWords);
+      showAlert(muAlertRef, "всё в порядке, сейчас вы всё увидите :)", true);
+      setTimeout(() => navigate(`/show-card/${nameSet}`), 2000);
+    } else {
+      saveToLocaleStorage(params.set_name, someWords, "add")
+      showAlert(muAlertRef, "всё в порядке, сейчас вы всё увидите :)", true);
+      setTimeout(() => navigate(`/show-card/${params.set_name}`), 2000);
+    }
   }
 
   function getCorrectWords() {
@@ -78,8 +59,7 @@ const Createset = () => {
     <div className="main-container">
       <div className="create-sets-container">
         <div className="create-sets-container__alerts">
-          <Alert style={{display: "none", position: "absolute", top: "20px"}} ref={refAlertError} variant="danger"></Alert>
-          <AlertMU style={{display: "none", position: "absolute", top: "20px"}} ref={refAlertSuccess}  severity="success">всё в порядке, сейчас вы всё увидите :)</AlertMU>
+          <MuAlert ref={muAlertRef} />
         </div>
         { 
           params.set_name === "default" ? 
@@ -98,7 +78,7 @@ const Createset = () => {
           }
         </div>
         <div className="button-controls">
-          <Button style={{marginTop: "20px", height: "50px"}} variant="contained" onClick={() => prepareToSave()}>сохранить</Button>
+          <Button style={{marginTop: "20px", height: "50px"}} variant="contained" onClick={() => checkMistakesAndSave()}>сохранить</Button>
         </div>
       </div>
     </div>

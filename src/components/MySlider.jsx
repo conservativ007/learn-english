@@ -7,7 +7,7 @@ import 'swiper/css';
 import "swiper/css/bundle";
 import { HiArrowNarrowLeft, HiArrowNarrowRight } from 'react-icons/hi';
 
-import { speech } from '../hooks/speech';
+import { speech } from '../functions/speech';
 
 const MySlider = () => {
 

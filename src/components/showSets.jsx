@@ -5,7 +5,7 @@ import { setNameAction } from '../store/setNameReducer';
 
 import "../styles/showSets.css";
 import "../styles/video.css";
-import video from "../assets/video1.mkv";
+import video from "../assets/video2.mkv";
 
 const Showsets = () => {
   

@@ -1,19 +1,31 @@
 .create-sets-container {
   width: 100%;
-  margin: 0 auto;
+  margin: 20px auto;
   padding: 0 20px;
+}
+
+.create-sets-container__alerts {
+  width: 100%;
+  position: relative;
+}
+
+.my-alert{
+  position: absolute;
+  width: 100%;
+  top: 10px;
+  left: 0;
+  padding: 10px;
+  font-size: 20px;
+  color: white;
+
+  opacity: 0;
+  transition: opacity 0.6s;
 }
 
 .create-set {
   width: 100%;
   min-height: 50px;
-  margin-top: 100px;
 }
-
-.create-words {
-  margin-top: 100px;
-}
-
 
 .create-word {
   margin-top: 50px;
