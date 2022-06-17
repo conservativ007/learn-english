@@ -17,7 +17,7 @@ const MySlider = () => {
   const name = params.card_name;
   const [cards] = useState(JSON.parse(localStorage.getItem(name)));
   const [indexSlide, setIndexSlide] = useState(0);
-  
+
   let [counter, setCounter] = useState(1);
 
   function isFlippedCardToggle(e) {
