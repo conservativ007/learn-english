@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import {useNavigate, useParams} from "react-router";
 import "../../styles/games/edit.css";
 import { Link } from 'react-router-dom';
-import { AiFillDelete } from 'react-icons/ai';
 import Header from '../Header';
+import EditCard from './EditCard';
 import { deleteSetFromLocalStorage, deleteWordFromLocalStorage } from '../../functions/deleteFromLocalStorage';
 
 const Edit = () => {
@@ -36,14 +36,14 @@ const Edit = () => {
               <Link className="main-button" to={`/edit-setname/${params.card_name}`}>сменить название</Link>
               <div className="edit-setname_marker"></div>
             </div>
-            
             { 
               cards.map((card, index) => 
-                <div key={index} className="edit-card">
-                  <div className="edit-card_word">{card.word}</div>
-                  <div className="edit-card_word">{card.translate}</div>
-                  <AiFillDelete onClick={() => removeWord(card.id)} className="edit-delete"/>
-                </div>  
+                <EditCard 
+                  key={index} 
+                  card={card} 
+                  removeWord={removeWord} 
+                  setCards={setCards}
+                />
               )
             }
           </div>

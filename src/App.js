@@ -7,7 +7,7 @@ import Spelling from './components/games/Spelling';
 import Listening from './components/games/Listening';
 import Test from './components/games/Test';
 import ShowResults from './components/games/ShowResults';
-import Edit from './components/games/Edit';
+import Edit from './components/edit/Edit';
 import EditSetName from './components/games/EditSetName';
 
 function App() {

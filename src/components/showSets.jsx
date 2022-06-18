@@ -1,7 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { setNameAction } from '../store/setNameReducer';
 
 import "../styles/showSets.css";
 import "../styles/video.css";
@@ -9,7 +7,6 @@ import video from "../assets/video2.mkv";
 
 const Showsets = () => {
   
-  // const dispatch = useDispatch();
   let backgrounds = ["#ff7675", "#fab1a0", "#55efc4", "#81ecec", "#ff9ff3", "#feca57", "#ff6b6b", "#1dd1a1"];
   let sets = JSON.parse(localStorage.getItem("LEARN_ENGLISH"));
 
@@ -42,7 +39,6 @@ const Showsets = () => {
                 className="set"
               >
                 <Link 
-                // onClick={() => dispatch(setNameAction(item))} 
                 className="link" 
                 to={`/show-card/${item}`}>{item}</Link>
               </div>
