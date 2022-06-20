@@ -47,7 +47,7 @@ const Test = () => {
     setEndGame(true);
   }
 
-  // плавная прокрутка
+  // smooth scrolling
   useEffect(() => {
     let [...elems] = document.querySelectorAll(".answers");
 
@@ -82,9 +82,9 @@ const Test = () => {
                 return <ListeningComponent key={card.id} card={card} lastCard={cards.length - 1 === index ? true : false} />
               } 
               if(index % 2 === 0) {
-                return <Chooice key={card.id} card={card} lastCard={cards.length - 1 === index ? true : false} />
+                return <Chooice key={card.id} card={card} />
               } 
-              return <TrueOrFalse key={card.id} card={card} index={index} lastCard={cards.length - 1 === index ? true : false} />
+              return <TrueOrFalse key={card.id} card={card} index={index} />
             })
           }
         </div>

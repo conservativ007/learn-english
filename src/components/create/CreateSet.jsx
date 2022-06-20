@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 
 import { saveToLocaleStorage } from '../../functions/saveToLocalStorage';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Button from '@mui/material/Button';
 
@@ -12,27 +12,29 @@ import { checkValidName } from '../../functions/changeNameSetToLocalStorage';
 
 import MuAlert from '../alerts/MuAlert';
 import { showAlert } from '../alerts/showAlert';
+import { addZeroingAction } from '../../store/wordsReducer';
 
 const Createset = () => {
 
   const params = useParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch(store => store.wordsReducer);
 
   const [counter, setCounter] = useState(2);
 
   let words = useSelector(state => state.wordsReducer);
-  let nameSet = useSelector(state => state.setNameReducer);
+  let nameSetFromCreateNewSet = useSelector(state => state.setNameReducer);
   
   const muAlertRef = useRef();
 
   function checkMistakesAndSave() {
     let someWords = getCorrectWords();
 
-    if(nameSet.length === 0) {
+    if(params.set_name === "default" && nameSetFromCreateNewSet.length === 0) {
       return showAlert(muAlertRef, "введите название подборки", false);
     } 
 
-    if(nameSet.length > 0 && checkValidName(nameSet) === true && params.set_name === "default") {
+    if(nameSetFromCreateNewSet.length > 0 && checkValidName(nameSetFromCreateNewSet) === true && params.set_name === "default") {
       return showAlert(muAlertRef, "такое имя уже существует выберите другое", false);
     }
 
@@ -40,15 +42,17 @@ const Createset = () => {
       return showAlert(muAlertRef, "заполните хотябы одну карточку", false);
     }
 
+    showAlert(muAlertRef, "всё в порядке, сейчас вы всё увидите :)", true);
+
     if(params.set_name === "default") {
-      saveToLocaleStorage(nameSet, someWords);
-      showAlert(muAlertRef, "всё в порядке, сейчас вы всё увидите :)", true);
-      setTimeout(() => navigate(`/show-card/${nameSet}`), 2000);
+      saveToLocaleStorage(nameSetFromCreateNewSet, someWords);
+      setTimeout(() => navigate(`/show-card/${nameSetFromCreateNewSet}`), 2000);
     } else {
       saveToLocaleStorage(params.set_name, someWords, "add")
-      showAlert(muAlertRef, "всё в порядке, сейчас вы всё увидите :)", true);
       setTimeout(() => navigate(`/show-card/${params.set_name}`), 2000);
     }
+
+    dispatch(addZeroingAction());
   }
 
   function getCorrectWords() {

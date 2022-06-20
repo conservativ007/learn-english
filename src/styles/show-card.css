@@ -26,6 +26,14 @@
   align-items: center;
 }
 
+.slider-counter {
+  display: flex;
+}
+
+.slider-counter div {
+  margin: 0 5px;
+}
+
 
 .flip-card {
   position: absolute;

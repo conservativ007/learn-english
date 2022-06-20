@@ -22,7 +22,6 @@ const EditCard = ({card, removeWord, setCards}) => {
     let newCards = editWordToSetToLocalStorage(params.card_name, card.id, word, translate, phrase);
     setCardEdit(false);
     setCards(newCards);
-    // console.log(newCards)
   }
 
   useEffect(() => {

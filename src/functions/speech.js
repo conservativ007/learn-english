@@ -17,7 +17,9 @@ export function speech(sound, timedelay = false, counter) {
   }) 
 
   getVoice.then(voices => {
-    text.voice = voices[6];
+
+    let newVoice = voices.filter(i => i.name === "Microsoft Zira - English (United States)");
+    text.voice = newVoice[0];
 
     if(timedelay !== false) {
       let timerId = setTimeout(() => {

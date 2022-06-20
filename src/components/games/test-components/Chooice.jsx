@@ -5,7 +5,7 @@ import { getCards } from '../../../functions/getCards';
 import "../../../styles/games/test-components/choice.css";
 
 
-const Chooice = ({ card, lastCard = false}) => {
+const Chooice = ({ card }) => {
 
   const refAnswerContainer = useRef(null);
   const params = useParams();

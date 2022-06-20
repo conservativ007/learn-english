@@ -5,7 +5,7 @@ import { BiArrowBack } from 'react-icons/bi';
 import { speech } from '../../../functions/speech';
 import "../../../styles/games/test-components/listening-component.css";
 
-const ListeningComponent = ({ card }) => {
+const ListeningComponent = ({ card, lastCard = false }) => {
 
   const [userAnswer, setUserAnswer] = useState("");
   const refContainer = useRef(null);
@@ -29,7 +29,7 @@ const ListeningComponent = ({ card }) => {
     e.target.setAttribute("data-user-answerID", isUserAnswerTrue === true ? card.id : 0);
   }
 
-  // подсветить правильный ответ
+  // highlight the correct answer
   useEffect(() => {
     if(userAnswer.length < 4) return;
     let tryAnswer = String(card.translate);
@@ -53,7 +53,7 @@ const ListeningComponent = ({ card }) => {
           value={userAnswer}
           onChange={e => setUserAnswer(e.target.value)}
         />
-        <Button className="answers" onClick={e => checkUserAnswer(e)} >далее</Button>
+        <Button className="answers" onClick={e => checkUserAnswer(e)} >{lastCard ? "подтвердить" : "делее"}</Button>
         <div ref={refAnswerHelp} className="answer-help">{card.translate}</div>
       </div>
       

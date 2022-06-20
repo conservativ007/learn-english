@@ -70,7 +70,7 @@ const MySlider = () => {
         </Swiper>
         <div className="slider-arrows">
           <HiArrowNarrowLeft className="arrow" onClick={() => nextOrPrevSlide("prev")} />
-          <div>{indexSlide + 1} / {cards.length}</div>
+          <div className="slider-counter">{indexSlide + 1} <div>/</div> {cards.length}</div>
           <HiArrowNarrowRight className="arrow" onClick={() => nextOrPrevSlide("next")} />
         </div>
         </>

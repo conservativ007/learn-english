@@ -1,12 +1,15 @@
 import { combineReducers, legacy_createStore } from "redux";
+import { composeWithDevTools } from '@redux-devtools/extension';
+
 import { wordsReducer } from "./wordsReducer";
 import { setNameReducer } from "./setNameReducer";
 import { answersReducer } from "./answersReducer";
-import { counterReducer } from "./counterReducer";
 
-export const store = legacy_createStore(combineReducers({
+const rootReducer = combineReducers({
   wordsReducer,
   setNameReducer,
   answersReducer,
-  counterReducer
-}));
+})
+
+export const store = legacy_createStore(rootReducer, composeWithDevTools());
+
