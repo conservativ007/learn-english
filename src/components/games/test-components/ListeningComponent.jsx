@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { FormControl, Button } from 'react-bootstrap';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 import { AiFillSound } from 'react-icons/ai';
 import { BiArrowBack } from 'react-icons/bi';
 import { speech } from '../../../functions/speech';
@@ -48,12 +49,14 @@ const ListeningComponent = ({ card, lastCard = false }) => {
       </div>
       <div className="choice-explain">Введите ваш ответ</div> 
       <div className="answer-container">
-        <FormControl
+      <TextField
+          variant="standard" 
+          style={{width: "100%"}}
           placeholder="введите перевод на русском"
           value={userAnswer}
           onChange={e => setUserAnswer(e.target.value)}
         />
-        <Button className="answers" onClick={e => checkUserAnswer(e)} >{lastCard ? "подтвердить" : "делее"}</Button>
+        <Button variant="contained" className="answers" onClick={e => checkUserAnswer(e)} >{lastCard ? "подтвердить" : "делее"}</Button>
         <div ref={refAnswerHelp} className="answer-help">{card.translate}</div>
       </div>
       

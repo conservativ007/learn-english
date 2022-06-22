@@ -1,6 +1,5 @@
 .game-container {
-  margin-top: 20px;
-  /* padding: 0 20px; */
+  margin: 20px 0;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -8,16 +7,9 @@
   align-items: center;
 }
 
-@media (max-width: 440px) {
-  .game-container {
-    width: 320px;
-  }
-}
-
 .games {
   margin: 50px auto;
   padding: 10px;
-  width: 320px;
   height: 200px;
 }
 
@@ -39,6 +31,11 @@
   text-decoration: none;
   font-size: 20px;
   padding-bottom: 5px;
+  color: #0984e3;
+}
+
+.games a:visited {
+  color: #0984e3;
 }
 
 .check-answer {
@@ -48,6 +45,7 @@
 }
 
 .choice-container {
+  box-sizing: border-box;
   position: relative;
   padding: 20px;
   width: 100%;

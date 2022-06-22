@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -13,6 +13,8 @@ const CreateWord = ({index, lastCard, setCounter}) => {
   const [userWord, setUserWord] = useState("");
   const [userWordTranslate, setUserWordTranslate] = useState("");
   const [userPhrase, setUserPhrase] = useState("");
+
+  const ref = useRef();
 
   let dispatch = useDispatch();
 
@@ -34,6 +36,11 @@ const CreateWord = ({index, lastCard, setCounter}) => {
 
     dispatch(addWordsAction(testObj))
   }, [index, userWord, userWordTranslate, userPhrase, dispatch]);
+
+  useEffect(() => {
+    if(addPhrase === false) return;
+    ref.current.querySelector("input").focus();
+  }, [addPhrase])
 
   return (
     <>
@@ -63,6 +70,7 @@ const CreateWord = ({index, lastCard, setCounter}) => {
           {
             addPhrase ? 
             <TextField 
+              ref={ref}
               className="max-width" 
               id="outlined-basic4" 
               label="введите перевод" 

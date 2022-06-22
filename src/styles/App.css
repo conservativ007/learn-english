@@ -3,12 +3,12 @@
   width: 100%;
 }
 
-.main-container {
+/* .main-container {
   margin: 0 auto;
   width: 500px;
-}
+} */
 
-@media (max-width: 510px) {
+/* @media (max-width: 510px) {
   .main-container {
     width: 440px;
   }
@@ -18,15 +18,19 @@
   .main-container {
     width: 320px;
   }
-}
+} */
 
 .main-button {
-  padding: 5px 10px;
-  text-decoration: none;
-  font-size: 18px;
-  background-color: #0d6efd;
-  border-radius: 4px;
+  background-color: #0984e3; 
+  border: none;
   color: white;
+  padding: 15px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  margin: 4px 2px;
+  cursor: pointer;
 }
 
 .main-button:hover {

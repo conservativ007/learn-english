@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import { changeNameSetToLocalStorage } from '../../functions/changeNameSetToLocalStorage';
 import {useParams, useNavigate} from "react-router";
 
@@ -14,6 +14,7 @@ const EditSetName = () => {
   const params = useParams();
   const [nameSet, setNameSet] = useState(params.set_name);
   const muAlertRef = useRef();
+  const ref = useRef();
   const navigate = useNavigate();
 
   function testFunc() {
@@ -27,11 +28,16 @@ const EditSetName = () => {
     }
   }
 
+  useEffect(() => {
+    ref.current.querySelector("input").focus();
+  }, []);
+
   return (
     <div className="main-container">
       <div className="change-setname">
         <MuAlert ref={muAlertRef} />
         <TextField 
+          ref={ref}
           className="max-width change-setname__input" 
           id="outlined-basic5" 
           variant="standard" 

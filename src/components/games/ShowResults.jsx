@@ -1,13 +1,22 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import "../../styles/games/showResults.css";
 import { zeroingAction } from '../../store/answersReducer';
 
+import Button from '@mui/material/Button';
+
 const ShowResults = () => {
+
+  const navigate = useNavigate();
 
   const results = useSelector(store => store.answersReducer);
   const dispatch = useDispatch();
+
+  function goMain() {
+    dispatch(zeroingAction());
+    navigate("/");
+  }
 
   return (
     <div className="main-container">
@@ -28,13 +37,13 @@ const ShowResults = () => {
           <div>правильных ответов: {results.correctAnswerCounter}</div>
           <div>неправильных ответов: {results.incorrectAnswerCounter}</div>
         </div>
-        <Link 
-        onClick={() => dispatch(zeroingAction())} 
-        className="button-link main-button" 
-        to="/"
+        <Button 
+          variant="contained"
+          onClick={() => goMain()} 
+          className="button-link main-button" 
         >
           на главную
-        </Link>
+        </Button>
       </div>
     </div>
   )

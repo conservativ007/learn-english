@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
+import Button from '@mui/material/Button';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import Chooice from './test-components/Chooice';
@@ -73,7 +73,7 @@ const Test = () => {
   return (
     <>
       <Header />
-      <div className="main-container">
+      <div className="container">
       <div className="game-container">
         <div ref={questionsDom} className="questions">
           {
@@ -91,12 +91,15 @@ const Test = () => {
         {
           endGame === false ? 
           <Button 
+            variant="contained"
             onClick={() => getUserAnswers()} 
             style={{marginBottom: "50px"}}
             className="get-results"
           >
-            посмотреть результаты
-          </Button> :
+            осмотреть результаты
+          </Button>
+
+          :
           <Link 
             style={{marginBottom: "50px"}}
             className="main-button" 

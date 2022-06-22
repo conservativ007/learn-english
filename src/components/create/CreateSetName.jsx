@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 
 import { setNameAction } from '../../store/setNameReducer';
 import { useDispatch } from 'react-redux';
-import { red } from '@mui/material/colors';
 
 
 const CreateSetName = () => {

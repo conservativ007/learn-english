@@ -39,7 +39,7 @@ const MySlider = () => {
 
   if(cards) {
     return (
-      <>
+      <div className="container">
         <Swiper
         modules={[Navigation, Pagination, Scrollbar, A11y]}
         spaceBetween={50}
@@ -73,7 +73,7 @@ const MySlider = () => {
           <div className="slider-counter">{indexSlide + 1} <div>/</div> {cards.length}</div>
           <HiArrowNarrowRight className="arrow" onClick={() => nextOrPrevSlide("next")} />
         </div>
-        </>
+        </div>
     );
   }
 }

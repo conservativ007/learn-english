@@ -1,8 +1,9 @@
-import React, { useRef, useState } from 'react';
-import { Button, FormControl } from 'react-bootstrap';
+import React, { useRef, useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
 import ShowResults from './ShowResults';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
 import "../../styles/games/spelling.css"
 import { checkUserAnswer } from '../../functions/checkUserAnswer';
@@ -21,6 +22,7 @@ const Spelling = () => {
 
   const marker = useRef(null);
   const DOMElemTrueAnswer = useRef(null);
+  const focus = useRef(null);
 
   function testCheckAnswer(bool = false) {
     checkUserAnswer(
@@ -43,14 +45,22 @@ const Spelling = () => {
     }, 1000);
   }
 
+  useEffect(() => {
+    if(endGame === true) return;
+    focus.current.querySelector("input").focus();
+  });
+
   if(endGame === true) return <ShowResults />
   
   return (
-    <div className="main-container">
+    <div className="container">
       <div className="game-container">
         <div className="word-translate">{cards[counter].translate}</div>
         <div className="user-answer">
-          <FormControl
+          <TextField
+            ref={focus}
+            style={{width: "100%"}}
+            variant="standard" 
             placeholder="введите перевод на английском"
             value={inputAnswer}
             onChange={e => setInputAnswer(e.target.value)}
@@ -59,11 +69,11 @@ const Spelling = () => {
           <div ref={DOMElemTrueAnswer} className="spelling-true-answer"></div>
         </div>
         <div className="check-answer">
-          <Button className="answer-button" onClick={() => testCheckAnswer(true)}>Ответ</Button>
-          <Button onClick={() => testCheckAnswer(false)} >не знаю</Button>
+          <Button variant="contained" onClick={() => testCheckAnswer(true)}>Ответ</Button>
+          <Button style={{marginLeft: "20px"}} variant="contained" onClick={() => testCheckAnswer(false)} >не знаю</Button>
+        </div>
         </div>
       </div>
-    </div>
   );
 }
 

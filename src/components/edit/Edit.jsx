@@ -4,6 +4,8 @@ import "../../styles/games/edit.css";
 import { Link } from 'react-router-dom';
 import Header from '../Header';
 import EditCard from './EditCard';
+
+import Button from '@mui/material/Button';
 import { deleteSetFromLocalStorage, deleteWordFromLocalStorage } from '../../functions/deleteFromLocalStorage';
 
 const Edit = () => {
@@ -28,12 +30,18 @@ const Edit = () => {
   return (
     <>
       <Header />
-      <div className="main-container">
+      <div className="container">
         <div className="game-container">
           <div className="edit">
             <div className="edit-setname">
               <div className="set-name">{params.card_name}</div>
-              <Link className="main-button" to={`/edit-setname/${params.card_name}`}>сменить название</Link>
+              <Button 
+                style={{marginLeft: "20px"}}
+                variant="contained"
+                onClick={() => navigate(`/edit-setname/${params.card_name}`)} 
+              >
+                сменить название
+              </Button>
               <div className="edit-setname_marker"></div>
             </div>
             { 
@@ -47,7 +55,9 @@ const Edit = () => {
               )
             }
           </div>
-          <Link className="edit-button main-button" to={`/create-set/${params.card_name}`}>добавить слово</Link>
+          <Button variant="contained" style={{marginTop: "20px"}} onClick={() => navigate(`/create-set/${params.card_name}`)}>
+            добавить слово
+          </Button>
         </div>
       </div>
     </>

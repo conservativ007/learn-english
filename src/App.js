@@ -1,4 +1,4 @@
-import './App.css';
+import './styles/App.css';
 import { useRoutes } from "react-router-dom";
 import Home from './components/Home';
 import Createset from './components/create/CreateSet';

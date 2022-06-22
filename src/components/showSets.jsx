@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import "../styles/showSets.css";
+import "../styles/show-sets.css";
 import "../styles/video.css";
 import video from "../assets/video2.mkv";
 
@@ -27,24 +27,26 @@ const Showsets = () => {
   if(sets && sets.length > 0)
 
   return (
-    <div className="set-container">
-      <h2>Your sets</h2>
-      <div className="sets">
-        {
-          sets.map((item, index) => {
-            return (
-              <div 
-                key={index} 
-                style={{backgroundColor: backgrounds[index % backgrounds.length]}} 
-                className="set"
-              >
-                <Link 
-                className="link" 
-                to={`/show-card/${item}`}>{item}</Link>
-              </div>
-            )
-          })
-        }
+    <div className="container">
+      <div className="set-container">
+        <h2>Your sets</h2>
+        <div className="sets">
+          {
+            sets.map((item, index) => {
+              return (
+                <div 
+                  key={index} 
+                  style={{backgroundColor: backgrounds[index % backgrounds.length]}} 
+                  className="set"
+                >
+                  <Link 
+                  className="link" 
+                  to={`/show-card/${item}`}>{item}</Link>
+                </div>
+              )
+            })
+          }
+        </div>
       </div>
     </div>
   );

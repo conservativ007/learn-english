@@ -4,9 +4,8 @@
 
 .edit-card {
   position: relative;
-  margin-top: 10px;
   border-bottom: 3px solid #74b9ff;
-  padding: 20px 10px;
+  padding: 20px 0;
   display: grid;
   grid-template-rows: auto;
   font-size: 20px;
@@ -14,30 +13,28 @@
   font-family: sans-serif;
 }
 
-@media (max-width: 767px) {
-  .edit-card {
-    font-size: 17px;
-  }
-}
-
 .edit-card:first-child {
   margin-top: 0;
+}
+
+.edit-card__word:nth-child(2) {
+  margin: 10px 0;
 }
 
 
 .edit-delete {
   position: absolute;
   font-size: 30px;
-  top: calc(70% - 15px);
-  right: 10px;
+  top: 15px;
+  right: 0;
   cursor: pointer;
 }
 
 .edit-edit {
   position: absolute;
   font-size: 30px;
-  top: calc(30% - 15px);
-  right: 10px;
+  top: 55px;
+  right: 0;
   cursor: pointer;
 }
 
@@ -116,12 +113,6 @@
 
 .change-setname__input {
   margin-top: 20px;
-}
-
-@media (max-width: 360px) {
-  .change-setname {
-    width: 320px;
-  }
 }
 
 .hide {

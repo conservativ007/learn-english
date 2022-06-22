@@ -5,7 +5,10 @@ import { useDispatch } from "react-redux";
 
 import { AiFillSound } from 'react-icons/ai';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
-import { Button, FormControl } from 'react-bootstrap';
+
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+
 import { speech } from '../../functions/speech';
 import { checkUserAnswer } from "../../functions/checkUserAnswer";
 import ShowResults from './ShowResults';
@@ -24,6 +27,7 @@ const Listening = () => {
 
   const marker = useRef(null);
   const DOMElemTrueAnswer = useRef(null);
+  const ref = useRef(null);
 
   function testFuncCheckAnswer(bool = false) {
     checkUserAnswer(
@@ -42,7 +46,9 @@ const Listening = () => {
   useEffect(() => {
     if(counter === 0) return;
     speech(cards[counter].word, 1);
+    ref.current.querySelector("input").focus();
   }, [cards, counter]);
+
 
   if(counter >= cards.length) {
     setCounter(0);
@@ -52,7 +58,7 @@ const Listening = () => {
   if(endGame === true) return <ShowResults />
 
   return (
-    <div className="main-container">
+    <div className="container">
       <div className="game-container"> 
         <div className="listening_sound-container">
           <div className="listening_sound-content">
@@ -69,7 +75,10 @@ const Listening = () => {
           </div>
           
           <div className="user-answer">
-            <FormControl
+            <TextField
+              ref={ref}
+              variant="standard" 
+              style={{width: "100%"}}
               placeholder="введите что слышите"
               value={userAnswer}
               onChange={e => setUserAnswer(e.target.value)}
@@ -78,8 +87,8 @@ const Listening = () => {
             <div ref={DOMElemTrueAnswer} className="spelling-true-answer"></div>
           </div>
           <div className="check-answer">
-            <Button className="answer-button" onClick={() => testFuncCheckAnswer(true)}>Ответ</Button>
-            <Button onClick={() => testFuncCheckAnswer(false)}>не знаю</Button>
+            <Button variant="contained" className="answer-button" onClick={() => testFuncCheckAnswer(true)}>Ответ</Button>
+            <Button style={{marginLeft: "20px"}} variant="contained" onClick={() => testFuncCheckAnswer(false)}>не знаю</Button>
           </div>
         </div>
       </div>

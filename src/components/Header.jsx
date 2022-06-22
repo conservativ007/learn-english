@@ -5,8 +5,12 @@ import "../styles/header.css";
 const Header = () => {
   return (
     <header>
-      <Link to="/">main</Link>
-      <Link to={`/create-set/${"default"}`}>создать подборку</Link>
+      <div className="container">
+        <div className="links">
+          <Link to="/">главная</Link>
+          <Link to={`/create-set/${"default"}`}>создать подборку</Link>
+        </div>
+      </div>
     </header>
   );
 }
