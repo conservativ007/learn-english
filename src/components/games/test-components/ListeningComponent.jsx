@@ -56,7 +56,7 @@ const ListeningComponent = ({ card, lastCard = false }) => {
           value={userAnswer}
           onChange={e => setUserAnswer(e.target.value)}
         />
-        <Button variant="contained" className="answers" onClick={e => checkUserAnswer(e)} >{lastCard ? "подтвердить" : "делее"}</Button>
+        <Button variant="contained" className="answers" onClick={e => checkUserAnswer(e)} >{lastCard ? "подтвердить" : "далее"}</Button>
         <div ref={refAnswerHelp} className="answer-help">{card.translate}</div>
       </div>
       

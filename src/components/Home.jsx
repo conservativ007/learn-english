@@ -1,5 +1,5 @@
 import React from 'react';
-import Showsets from './showSets';
+import Showsets from './ShowSets';
 import Header from "./Header";
 
 

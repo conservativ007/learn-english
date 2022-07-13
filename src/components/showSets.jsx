@@ -12,9 +12,9 @@ const Showsets = () => {
 
   if(!sets) {
     return (
-      <div className="main-container">
+      <div className="container">
         <div className="set-container">
-          <h2>У вас ещё нету подборки создайте первую :)</h2>
+          <h3>У вас ещё нету подборки создайте первую :)</h3>
           <Link className="set-link" to={`/create-set/${"default"}`}>создать первую подборку</Link>
         </div>
         <div className="video-container">
@@ -29,7 +29,7 @@ const Showsets = () => {
   return (
     <div className="container">
       <div className="set-container">
-        <h2>Your sets</h2>
+        <h2>Ваши подборки</h2>
         <div className="sets">
           {
             sets.map((item, index) => {

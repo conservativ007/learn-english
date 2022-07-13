@@ -19,7 +19,7 @@ const ShowResults = () => {
   }
 
   return (
-    <div className="main-container">
+    <div className="container">
       <div className="results">
         <h2>результаты</h2>
         {

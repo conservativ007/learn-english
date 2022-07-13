@@ -1,7 +1,5 @@
 .create-sets-container {
-  width: 100%;
-  margin: 50px auto;
-  padding: 0 20px;
+  margin: 50px 0;
 }
 
 .create-sets-container__alerts {

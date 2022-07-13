@@ -43,13 +43,13 @@
 }
 
 .set-link {
-  width: 100%;
   padding: 10px 20px;
   border-radius: 4px;
   background-color: #a29bfe;
   color: white;
   text-decoration: none;
   font-size: 20px;
+  text-align: center;
 }
 
 .set-link:hover {

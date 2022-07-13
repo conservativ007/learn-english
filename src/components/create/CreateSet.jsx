@@ -60,7 +60,7 @@ const Createset = () => {
   }
 
   return ( 
-    <div className="main-container">
+    <div className="container">
       <div className="create-sets-container">
         <div className="create-sets-container__alerts">
           <MuAlert ref={muAlertRef} />
