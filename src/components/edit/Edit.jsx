@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {useNavigate, useParams} from "react-router";
 import "../../styles/games/edit.css";
-import { Link } from 'react-router-dom';
 import Header from '../Header';
 import EditCard from './EditCard';
 
@@ -26,7 +25,7 @@ const Edit = () => {
     }
   }, [cards, params.card_name, navigate]);
 
-  if(cards.length > 0)
+  if(cards && cards.length > 0)
   return (
     <>
       <Header />

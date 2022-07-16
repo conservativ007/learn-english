@@ -33,7 +33,7 @@ const EditSetName = () => {
   }, []);
 
   return (
-    <div className="main-container">
+    <div className="container">
       <div className="change-setname">
         <MuAlert ref={muAlertRef} />
         <TextField 
